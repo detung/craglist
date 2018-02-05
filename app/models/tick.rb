@@ -1,5 +1,5 @@
 class Tick < ApplicationRecord
   belongs_to :user
 
-  has_many :routes
+  has_many :climbs
 end
