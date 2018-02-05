@@ -1,4 +1,4 @@
-class Route < ApplicationRecord
+class Climb < ApplicationRecord
   validates :name, :location, :grade, :type, :pitches, presence: true
   validates :description, :comment, length: { maximum: 5000 }
 
