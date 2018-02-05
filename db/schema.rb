@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205160942) do
+ActiveRecord::Schema.define(version: 20180205174134) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_projects_on_user_id"
+  end
+
+  create_table "routes", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "location", null: false
+    t.string "grade", null: false
+    t.string "type", null: false
+    t.integer "pitches", null: false
+    t.text "description"
+    t.integer "rating"
+    t.text "comment"
+    t.decimal "longitude"
+    t.decimal "latitude"
+    t.bigint "tick_id"
+    t.bigint "project_id"
+    t.bigint "to_do_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_routes_on_project_id"
+    t.index ["tick_id"], name: "index_routes_on_tick_id"
+    t.index ["to_do_id"], name: "index_routes_on_to_do_id"
+  end
+
+  create_table "ticks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ticks_on_user_id"
+  end
+
+  create_table "to_dos", force: :cascade do |t|
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_to_dos_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
