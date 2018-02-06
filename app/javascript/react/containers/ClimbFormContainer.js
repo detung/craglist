@@ -1,4 +1,6 @@
 import React from 'react';
+import { browserHistory } from 'react-router';
+
 import TextField from '../components/TextField';
 import Select from '../components/Select';
 import TextArea from '../components/TextArea';
@@ -60,6 +62,7 @@ class ClimbFormContainer extends React.Component {
     this.handlePitchesChange = this.handlePitchesChange.bind(this);
     this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
   handleNameChange(event) {
@@ -90,9 +93,47 @@ class ClimbFormContainer extends React.Component {
     this.setState({ comment: event.target.value })
   }
 
+  handleFormSubmit(event) {
+    event.preventDefault();
+    let formPayload = {
+      name: this.state.routeName,
+      location: this.state.location,
+      grade: this.state.gradeSelected,
+      type: this.state.typeSelected,
+      pitches: this.state.pitches,
+      description: this.state.description,
+      comment: this.state.comment
+    };
+    this.addNewRoute(formPayload);
+    browserHistory.push('/');
+  }
+
+  addNewRoute(formPayload) {
+    fetch('/api/v1/climbs', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      // .then(response => response.json())
+      // .then(body => {
+      //   this.setState({ })
+      // })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   render() {
     return(
-      <div>
+      <form className="new-form panel" onSubmit={this.handleFormSubmit}>
         <TextField
           label="Route Name"
           name="name"
@@ -138,7 +179,7 @@ class ClimbFormContainer extends React.Component {
           handlerFunction={this.handleCommentChange}
         />
         <input className="button" type="submit" value="Submit" />
-      </div>
+      </form>
     )
   }
 }
