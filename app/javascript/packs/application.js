@@ -15,6 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
     <App />,
     document.getElementById('app')
   );
-});
+})
 
 console.log('Hello World from Webpacker')
