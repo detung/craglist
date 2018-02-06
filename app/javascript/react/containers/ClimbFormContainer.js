@@ -99,7 +99,7 @@ class ClimbFormContainer extends React.Component {
       name: this.state.routeName,
       location: this.state.location,
       grade: this.state.gradeSelected,
-      type: this.state.typeSelected,
+      discipline: this.state.typeSelected,
       pitches: this.state.pitches,
       description: this.state.description,
       comment: this.state.comment
