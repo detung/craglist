@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180205215346) do
+ActiveRecord::Schema.define(version: 20180206215318) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180205215346) do
     t.string "name", null: false
     t.string "location", null: false
     t.string "grade", null: false
-    t.string "type", null: false
+    t.string "discipline", null: false
     t.integer "pitches", null: false
     t.text "description"
     t.integer "rating"
@@ -31,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180205215346) do
     t.bigint "to_do_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "mp_route_id", null: false
+    t.integer "mp_route_id"
     t.index ["project_id"], name: "index_climbs_on_project_id"
     t.index ["tick_id"], name: "index_climbs_on_tick_id"
     t.index ["to_do_id"], name: "index_climbs_on_to_do_id"
