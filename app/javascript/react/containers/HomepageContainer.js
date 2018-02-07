@@ -9,7 +9,13 @@ const HomepageContainer = props => {
         <Link to='/addclimb'>Add Route</Link>
       </div>
       <div className="large-4 column">
-        <ToDoContainer />
+        Ticks
+      </div>
+      <div className="large-4 column">
+        Projects
+      </div>
+      <div className="large-4 column">
+        To Dos
       </div>
     </div>
   )

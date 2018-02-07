@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :climbs, only: [:create]
+      resources :climbs, only: [:create] do
+        get 'todo', on: :collection
+      end
     end
   end
 
