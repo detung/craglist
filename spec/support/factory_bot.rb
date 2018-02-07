@@ -24,5 +24,6 @@ FactoryBot.define do
     description "This is a cool rock climb"
     comment "Maybe one day"
     association :to_do
+    association :tick
   end
 end
