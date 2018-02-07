@@ -48,7 +48,7 @@ class ClimbFormContainer extends React.Component {
         '5.15c'
       ],
       gradeSelected: '',
-      typeOptions: ['Boulder', 'Sport', 'Top Rope', 'Traditional' ],
+      typeOptions: ['Boulder', 'Sport', 'Top Rope', 'Trad'],
       typeSelected: '',
       pitches: '',
       description: '',
