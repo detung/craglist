@@ -23,16 +23,18 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
 
   describe "POST#create" do
     it "creates a new Climb" do
-      post_json = {
-        name: "Biographie/Realization",
-        location: "Ceuse, France",
-        grade: "5.15a",
-        discipline: "Sport",
-        pitches: 1
+      new_post = {
+        climb: {
+          name: "Biographie/Realization",
+          location: "Ceuse, France",
+          grade: "5.15a",
+          discipline: "Sport",
+          pitches: 1
+        }
       }
 
       prev_count = Climb.count
-      post(:create, body: post_json)
+      post(:create, params: new_post)
       expect(Climb.count).to eq(prev_count + 1)
     end
   end
