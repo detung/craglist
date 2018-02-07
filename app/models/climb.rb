@@ -3,6 +3,5 @@ class Climb < ApplicationRecord
   validates :description, :comment, length: { maximum: 5000 }
 
   belongs_to :tick, optional: true
-  belongs_to :project, optional: true
   belongs_to :to_do, optional: true
 end
