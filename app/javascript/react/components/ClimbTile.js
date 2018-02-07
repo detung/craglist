@@ -2,7 +2,7 @@ import React from 'react';
 
 const ClimbTile = props => {
   return(
-    <div>
+    <div className="climb-tile">
       {props.name}
       {props.location}
       {props.grade}
