@@ -5,6 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :tick
-  has_one :project
   has_one :to_do
 end
