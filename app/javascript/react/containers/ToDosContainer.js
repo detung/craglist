@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router'
+import { Link } from 'react-router';
 import ClimbTile from '../components/ClimbTile';
 
 class ToDosContainer extends React.Component {

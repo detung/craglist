@@ -18,6 +18,12 @@ class Api::V1::ClimbsController < ApiController
     render json: to_do_list
   end
 
+  def ticks
+    user = User.first
+    tick_list = user.tick.climbs
+    render json: tick_list
+  end
+
   private
 
   def climb_params
