@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router'
 import ClimbTile from '../components/ClimbTile';
 
-class ToDoContainer extends React.Component {
+class ToDosContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class ToDoContainer extends React.Component {
   };
 
   componentDidMount() {
-    fetch('api/v1/climbs/todo')
+    fetch('api/v1/climbs/todos')
       .then(response => {
         if (response.ok) {
          return response;
@@ -62,4 +62,4 @@ class ToDoContainer extends React.Component {
   }
 }
 
-export default ToDoContainer;
+export default ToDosContainer;

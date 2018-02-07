@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router';
-import ToDoContainer from './ToDoContainer'
 
 const HomepageContainer = props => {
   return(
@@ -9,10 +8,10 @@ const HomepageContainer = props => {
         <Link to='/addclimb'>Add Route</Link>
       </div>
       <div className="large-6 column">
-        Ticks
+        <Link to='/ticks'>View All Ticks</Link>
       </div>
       <div className="large-6 column">
-        <Link to='/todo'>View All To Dos</Link>
+        <Link to='/todos'>View All To Dos</Link>
       </div>
     </div>
   )

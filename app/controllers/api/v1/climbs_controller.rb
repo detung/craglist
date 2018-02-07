@@ -11,7 +11,7 @@ class Api::V1::ClimbsController < ApiController
     end
   end
 
-  def todo
+  def todos
     user = User.first
     to_do_list = user.to_do
     to_do_list = to_do_list.climbs.order(:created_at)

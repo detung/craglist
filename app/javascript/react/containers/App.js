@@ -2,7 +2,8 @@ import React from 'react';
 import { Route, Router, browserHistory } from 'react-router';
 import HomepageContainer from './HomepageContainer';
 import ClimbFormContainer from './ClimbFormContainer';
-import ToDoContainer from './ToDoContainer';
+import ToDosContainer from './ToDosContainer';
+import TicksContainer from './TicksContainer';
 
 const App = props => {
 
@@ -10,7 +11,8 @@ const App = props => {
     <Router history={browserHistory}>
       <Route path='/' component={HomepageContainer} />
       <Route path='/addclimb' component={ClimbFormContainer} />
-      <Route path='/todo' component={ToDoContainer} />
+      <Route path='/todos' component={ToDosContainer} />
+      <Route path='/ticks' component={TicksContainer} />
     </Router>
   )
 }
