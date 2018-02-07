@@ -14,7 +14,7 @@ class Api::V1::ClimbsController < ApiController
   def todo
     user = User.first
     to_do_list = user.to_do
-    to_do_list = to_do_list.climbs
+    to_do_list = to_do_list.climbs.order(:created_at)
     render json: to_do_list
   end
 
