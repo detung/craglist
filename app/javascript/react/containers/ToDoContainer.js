@@ -1,5 +1,5 @@
 import React from 'react';
-import ClimbTile from '../component/ClimbTile';
+import ClimbTile from '../components/ClimbTile';
 
 class ToDoContainer extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class ToDoContainer extends React.Component {
   };
 
   componentDidMount() {
-    fetch('api/v1/')
+    fetch('api/v1/climbs/todo')
       .then(response => {
         if (response.ok) {
          return response;
@@ -31,6 +31,7 @@ class ToDoContainer extends React.Component {
     let climbs = this.state.climbs.map(climb => {
       return(
         <ClimbTile
+          key={climb.id}
           name={climb.name}
           location={climb.location}
           grade={climb.grade}

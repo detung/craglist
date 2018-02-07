@@ -10,7 +10,10 @@ class Api::V1::ClimbsController < ApiController
   end
 
   def todo
-    
+    user = User.first
+    to_do_list = user.to_do
+    to_do_list = to_do_list.climbs
+    render json: to_do_list
   end
 
   private
