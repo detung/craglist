@@ -1,20 +1,95 @@
 import React from 'react';
 import { Link } from 'react-router';
+import HomepageClimbTile from '../components/HomepageClimbTile';
+import HomepageToDoList from '../components/HomepageToDoList';
+import HomepageTickList from '../components/HomepageTickList';
 
-const HomepageContainer = props => {
-  return(
-    <div className="row">
-      <div>
-        <Link to='/addclimb'>Add Route</Link>
+class HomepageContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toDoList: [],
+      tickList: []
+    }
+  }
+
+  componentDidMount() {
+    this.getTickList();
+    this.getToDoList();
+  }
+
+  getToDoList() {
+    fetch('api/v1/climbs/todos')
+      .then(response => {
+        if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ toDoList: body });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  getTickList() {
+    fetch('api/v1/climbs/ticks')
+      .then(response => {
+        if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+      })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({ tickList: body });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  render() {
+    let toDos = this.state.toDoList.map(climb => {
+      return(
+        <HomepageClimbTile
+          key={climb.id}
+          name={climb.name}
+          grade={climb.grade}
+          discipline={climb.discipline}
+          location={climb.location}
+        />
+      )
+    });
+
+    let ticks = this.state.tickList.map(climb => {
+      return(
+        <HomepageClimbTile
+          key={climb.id}
+          name={climb.name}
+          grade={climb.grade}
+          discipline={climb.discipline}
+          location={climb.location}
+        />
+      )
+    });
+
+    return(
+      <div className="row">
+        <HomepageTickList
+          ticks={ticks}
+        />
+        <HomepageToDoList
+          toDos={toDos}
+        />
       </div>
-      <div className="large-6 column">
-        <Link to='/ticks'>View All Ticks</Link>
-      </div>
-      <div className="large-6 column">
-        <Link to='/todos'>View All To Dos</Link>
-      </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default HomepageContainer;

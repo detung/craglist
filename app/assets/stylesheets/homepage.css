@@ -1,0 +1,63 @@
+.home-container {
+  border: 2px black solid;
+  border-radius: 40px;
+  height: 500px;
+  width: 450px;
+  margin: 25px;
+  background-color: rgba(237, 241, 255, 0.8);
+  color: #000000;
+}
+
+.home-container h3 {
+  padding: 15px 0px 10px;
+  text-align: right;
+}
+
+.view-link {
+  text-align: right;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 6%;
+}
+
+.view-link a {
+  color: #3960EE;
+}
+
+.view-link a:hover {
+  text-decoration: underline;
+}
+.home-list {
+  margin: auto;
+}
+
+.home-list li {
+  padding-top: 10px;
+  padding-left: 10%;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  margin-bottom: -2px;
+}
+
+.home-list span {
+  margin: 10px;
+}
+
+.home-list .name {
+  font-weight: bold;
+  font-size: 1.1em;
+  text-align: center;
+  padding: 2% 0px;
+}
+
+.home-list .right-column {
+  padding: 0px 20px 10px 20px;
+}
+
+.home-list .grade {
+
+}
+
+.home-list .location {
+
+}
