@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router'
-import ClimbTile from '../components/ClimbTile';
+import { Link } from 'react-router';
+import TickClimbTile from '../components/TickClimbTile';
 
-class ToDoContainer extends React.Component {
+class TicksContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +11,7 @@ class ToDoContainer extends React.Component {
   };
 
   componentDidMount() {
-    fetch('api/v1/climbs/todo')
+    fetch('api/v1/climbs/ticks')
       .then(response => {
         if (response.ok) {
          return response;
@@ -31,7 +31,7 @@ class ToDoContainer extends React.Component {
   render() {
     let climbs = this.state.climbs.map(climb => {
       return(
-        <ClimbTile
+        <TickClimbTile
           key={climb.id}
           name={climb.name}
           location={climb.location}
@@ -48,10 +48,10 @@ class ToDoContainer extends React.Component {
       <div>
         <div className="row header">
           <div className="large-6 column header">
-            <h2>To Do List</h2>
+            <h2>Tick List</h2>
           </div>
           <div className="large-6 column new-button">
-            <Link className="button" to="/addclimb">Add New To Do</Link>
+            <Link className="button" to="/addclimb">Add New Tick</Link>
           </div>
         </div>
         <div className="row list-container">
@@ -62,4 +62,4 @@ class ToDoContainer extends React.Component {
   }
 }
 
-export default ToDoContainer;
+export default TicksContainer;

@@ -6,16 +6,21 @@ class Api::V1::ClimbsController < ApiController
     to_do_list = user.to_do
     climb.to_do = to_do_list
     if climb.save!
-      # flash[:notice] = "Route Added Successfully"
       render json: Climb.all
     end
   end
 
-  def todo
+  def todos
     user = User.first
     to_do_list = user.to_do
     to_do_list = to_do_list.climbs.order(:created_at)
     render json: to_do_list
+  end
+
+  def ticks
+    user = User.first
+    tick_list = user.tick.climbs
+    render json: tick_list
   end
 
   private
