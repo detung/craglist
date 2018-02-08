@@ -6,7 +6,6 @@ class Api::V1::ClimbsController < ApiController
     to_do_list = user.to_do
     climb.to_do = to_do_list
     if climb.save!
-      # flash[:notice] = "Route Added Successfully"
       render json: Climb.all
     end
   end

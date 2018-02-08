@@ -124,10 +124,6 @@ class ClimbFormContainer extends React.Component {
          throw(error);
        }
      })
-      // .then(response => response.json())
-      // .then(body => {
-      //   this.setState({ })
-      // })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
