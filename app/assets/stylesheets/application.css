@@ -15,3 +15,10 @@
  *= require foundation_and_overrides
 
  */
+
+body {
+ background-image: url(/assets/mountain.jpg);
+ background-size: 100%;
+ background-repeat: no-repeat;
+ background-color: #3F6C91;
+}
