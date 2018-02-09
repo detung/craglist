@@ -9,10 +9,16 @@ h2 {
 
 .new-button {
   text-align: right;
-  padding: 10px 0;
 }
 
+.new-button .button {
+  padding: 14px;
+  margin-top: 19px;
+}
 
 .list-container {
-  border: 2px ridge black;
+  border: 1px solid rgba(86, 86, 86, 0.2);
+  background-color: rgba(237, 241, 255, 0.8);
+  border-radius: 2px;
+  padding: 20px;
 }

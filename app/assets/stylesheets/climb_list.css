@@ -1,0 +1,89 @@
+.climb-table {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  margin-bottom: 0px;
+}
+
+.climb-table thead {
+  background-color: rgba(255, 255, 255, 0.0);
+}
+
+.climb-table thead th {
+  font-size: 1.2em;
+}
+
+thead th:nth-child(1) {
+  width: 5%;
+}
+
+thead th:nth-child(2) {
+  width: 15%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 10%;
+}
+
+thead th:nth-child(5) {
+  width: 10%;
+}
+
+thead th:nth-child(6) {
+  width: 10%;
+}
+
+thead th:nth-child(7) {
+  width: 25%;
+}
+
+thead th:nth-child(8) {
+  width: 5%;
+}
+
+thead th:nth-child(9) {
+  width: 5%;
+}
+
+.climb-table td {
+  font-size: 1em;
+  padding: 8px;
+}
+
+tbody td:nth-child(6) {
+  text-align: center;
+}
+
+tbody td:nth-child(8) {
+  text-align: right;
+}
+
+.fa-trash-alt {
+  color: #828282;
+}
+
+.fa-edit {
+  color: #828282;
+}
+
+.fa-check {
+  color: #828282;
+}
+
+.fa-trash-alt:hover {
+  color: #000000;
+}
+
+.fa-edit:hover {
+  color: #000000;
+}
+
+.fa-check:hover {
+  color: #000000;
+}
