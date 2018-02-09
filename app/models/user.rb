@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :to_dos
+  has_many :climbs, through: :to_dos
 end

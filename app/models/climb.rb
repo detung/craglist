@@ -3,4 +3,5 @@ class Climb < ApplicationRecord
   validates :description, :comment, length: { maximum: 5000 }
 
   has_many :to_dos
+  has_many :users, through: :to_dos
 end
