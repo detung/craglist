@@ -1,5 +1,4 @@
 class ToDo < ApplicationRecord
   belongs_to :user
-
-  has_many :climbs
+  belongs_to :climb
 end

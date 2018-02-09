@@ -19,8 +19,7 @@ class Api::V1::ClimbsController < ApiController
 
   def ticks
     user = User.first
-    tick_list = user.tick.climbs
-    render json: tick_list
+    
   end
 
   private
