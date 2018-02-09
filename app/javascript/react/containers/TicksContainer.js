@@ -55,7 +55,24 @@ class TicksContainer extends React.Component {
           </div>
         </div>
         <div className="row list-container">
-          {climbs}
+          <table className="climb-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Route Name</th>
+                <th>Location</th>
+                <th>Grade</th>
+                <th>Type</th>
+                <th>Pitches</th>
+                <th>Comments</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {climbs}
+            </tbody>
+          </table>
         </div>
       </div>
     )
