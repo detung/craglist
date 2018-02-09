@@ -9,10 +9,7 @@ FactoryBot.define do
 
   factory :to_do do
     association :user
-  end
-
-  factory :tick do
-    association :user
+    association :climb
   end
 
   factory :climb do
@@ -23,7 +20,5 @@ FactoryBot.define do
     pitches 10
     description "This is a cool rock climb"
     comment "Maybe one day"
-    association :to_do
-    association :tick
   end
 end
