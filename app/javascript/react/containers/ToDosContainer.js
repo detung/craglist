@@ -51,7 +51,7 @@ class ToDosContainer extends React.Component {
             <h2>To Do List</h2>
           </div>
           <div className="large-6 column new-button">
-            <Link className="button" to="/addclimb">Add New To Do</Link>
+            <Link className="button" to="/addclimb">Add a To Do</Link>
           </div>
         </div>
         <div className="row list-container">
