@@ -17,8 +17,9 @@
  */
 
 body {
- background-image: url(/assets/mountain.jpg);
- background-size: 100%;
- background-repeat: no-repeat;
- background-color: #3F6C91;
+  background-image: url(/assets/mountain.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-color: #3F6C91;
 }

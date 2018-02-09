@@ -1,4 +1,57 @@
-.climb-tile {
-  border: 1px solid black;
-  padding: 1em;
+.climb-table {
+  border: none;
+  background-color: rgba(255, 255, 255, 0.0);
+  padding: 2% 1%;
+  width: 100%;
+  table-layout: fixed;
+}
+
+thead th:nth-child(1) {
+  width: 5%;
+}
+
+thead th:nth-child(2) {
+  width: 15%;
+}
+
+thead th:nth-child(3) {
+  width: 15%;
+}
+
+thead th:nth-child(4) {
+  width: 10%;
+}
+
+thead th:nth-child(5) {
+  width: 10%;
+}
+
+thead th:nth-child(6) {
+  width: 10%;
+}
+
+thead th:nth-child(7) {
+  width: 25%;
+}
+
+thead th:nth-child(8) {
+  width: 10%;
+}
+
+.climb-table thead {
+  background-color: rgba(255, 255, 255, 0.0);
+}
+
+.climb-table thead th {
+  font-size: 1.2em;
+}
+
+.climb-table td {
+  border: none;
+  font-size: 1em;
+  padding: 8px;
+}
+
+tbody td:nth-child(6) {
+  text-align: center;
 }

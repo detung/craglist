@@ -47,7 +47,7 @@ class ToDosContainer extends React.Component {
     return(
       <div>
         <div className="row header">
-          <div className="large-6 column header">
+          <div className="large-6 column">
             <h2>To Do List</h2>
           </div>
           <div className="large-6 column new-button">
@@ -55,7 +55,26 @@ class ToDosContainer extends React.Component {
           </div>
         </div>
         <div className="row list-container">
-          {climbs}
+          <div className="row table-header">
+
+          </div>
+          <table className="climb-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Route Name</th>
+                <th>Location</th>
+                <th>Grade</th>
+                <th>Type</th>
+                <th>Pitches</th>
+                <th>Comments</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {climbs}
+            </tbody>
+          </table>
         </div>
       </div>
     )
