@@ -1,12 +1,15 @@
 import React from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faCheck } from '@fortawesome/fontawesome-free-solid';
 import { faEdit } from '@fortawesome/fontawesome-free-solid';
 import { faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 
 const ClimbTile = props => {
   return(
     <tr>
-      <td></td>
+      <td>
+        <FontAwesomeIcon icon={faCheck} />
+      </td>
       <td>
         {props.name}
       </td>
