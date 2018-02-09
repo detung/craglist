@@ -1,6 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Climb, type: :model do
-  it { should belong_to :to_do }
-  it { should belong_to :tick }
+  it { should have_many :to_dos }
+  it { should have_many(:users).through(:to_dos) }
 end
