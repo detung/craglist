@@ -1,4 +1,7 @@
 import React from 'react';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/fontawesome-free-solid';
+import { faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 
 const ClimbTile = props => {
   return(
@@ -23,7 +26,10 @@ const ClimbTile = props => {
         {props.comment}
       </td>
       <td>
-        Edit Delete
+        <FontAwesomeIcon icon={faEdit} />
+      </td>
+      <td>
+        <FontAwesomeIcon icon={faTrashAlt} />
       </td>
     </tr>
   )

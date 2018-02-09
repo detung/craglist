@@ -55,9 +55,6 @@ class ToDosContainer extends React.Component {
           </div>
         </div>
         <div className="row list-container">
-          <div className="row table-header">
-
-          </div>
           <table className="climb-table">
             <thead>
               <tr>
@@ -68,6 +65,7 @@ class ToDosContainer extends React.Component {
                 <th>Type</th>
                 <th>Pitches</th>
                 <th>Comments</th>
+                <th></th>
                 <th></th>
               </tr>
             </thead>

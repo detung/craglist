@@ -1,9 +1,18 @@
 .climb-table {
   border: none;
   background-color: rgba(255, 255, 255, 0.0);
-  padding: 2% 1%;
   width: 100%;
   table-layout: fixed;
+  border-collapse: collapse;
+  margin-bottom: 0px;
+}
+
+.climb-table thead {
+  background-color: rgba(255, 255, 255, 0.0);
+}
+
+.climb-table thead th {
+  font-size: 1.2em;
 }
 
 thead th:nth-child(1) {
@@ -35,23 +44,22 @@ thead th:nth-child(7) {
 }
 
 thead th:nth-child(8) {
-  width: 10%;
+  width: 5%;
 }
 
-.climb-table thead {
-  background-color: rgba(255, 255, 255, 0.0);
-}
-
-.climb-table thead th {
-  font-size: 1.2em;
+thead th:nth-child(9) {
+  width: 5%;
 }
 
 .climb-table td {
-  border: none;
   font-size: 1em;
   padding: 8px;
 }
 
 tbody td:nth-child(6) {
   text-align: center;
+}
+
+tbody td:nth-child(8) {
+  text-align: right;
 }

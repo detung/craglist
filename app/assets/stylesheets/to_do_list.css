@@ -19,5 +19,5 @@ h2 {
 .list-container {
   border: 2px ridge black;
   background-color: rgba(237, 241, 255, 0.8);
-  border-radius: 40px;
+  padding: 20px;
 }
