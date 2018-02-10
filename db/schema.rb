@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20180209204813) do
   create_table "to_dos", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "climb_id"
-    t.boolean "completed", default: false, null: false
+    t.integer "status", default: 0
     t.index ["climb_id"], name: "index_to_dos_on_climb_id"
     t.index ["user_id"], name: "index_to_dos_on_user_id"
   end

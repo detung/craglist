@@ -10,8 +10,8 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
   before(:each) do
     FactoryBot.create(:to_do, user: user, climb: climb1)
     FactoryBot.create(:to_do, user: user, climb: climb2)
-    FactoryBot.create(:to_do, user: user, climb: climb3, completed: true)
-    FactoryBot.create(:to_do, user: user, climb: climb4, completed: true)
+    FactoryBot.create(:to_do, user: user, climb: climb3, status: "completed")
+    FactoryBot.create(:to_do, user: user, climb: climb4, status: "completed")
   end
 
   describe "GET#todo" do
@@ -41,8 +41,12 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       }
 
       prev_count = Climb.count
+      prev_user_climb_count = user.climbs.count
+
       post(:create, params: new_post)
+
       expect(Climb.count).to eq(prev_count + 1)
+      expect(user.climbs.count).to eq(prev_user_climb_count + 1)
     end
   end
 
@@ -59,5 +63,4 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       expect(returned_json[1]["name"]).to eq "Astroman"
     end
   end
-
 end

@@ -8,6 +8,7 @@ FactoryBot.define do
   end
 
   factory :to_do do
+    status 0
     association :user
     association :climb
   end
