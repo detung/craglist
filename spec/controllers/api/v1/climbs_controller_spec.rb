@@ -2,14 +2,17 @@ require "rails_helper"
 
 RSpec.describe Api::V1::ClimbsController, type: :controller do
   let!(:user) { FactoryBot.create(:user)}
-  let!(:to_do_list) { FactoryBot.create(:to_do, user: user) }
-  let!(:tick_list) { FactoryBot.create(:tick, user: user) }
+  let!(:climb1) { FactoryBot.create(:climb) }
+  let!(:climb2) { FactoryBot.create(:climb, name: "Sheer Lunacy") }
+  let!(:climb3) { FactoryBot.create(:climb, name: "Astroman", location: "Yosemite National Park") }
+  let!(:climb4) { FactoryBot.create(:climb, name: "Rostrum", location: "Yosemite National Park") }
 
   before(:each) do
-    FactoryBot.create(:climb, to_do: to_do_list)
-    FactoryBot.create(:climb, name: "Sheer Lunacy", to_do: to_do_list)
-    FactoryBot.create(:climb, name: "Astroman", location: "Yosemite National Park", tick: tick_list)
-    FactoryBot.create(:climb, name: "Rostrum", location: "Yosemite National Park", tick: tick_list)
+    FactoryBot.create(:to_do, user: user, climb: climb1)
+    FactoryBot.create(:to_do, user: user, climb: climb2)
+    FactoryBot.create(:to_do, user: user, climb: climb3, status: "completed")
+    FactoryBot.create(:to_do, user: user, climb: climb4, status: "completed")
+    sign_in user
   end
 
   describe "GET#todo" do
@@ -39,8 +42,32 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       }
 
       prev_count = Climb.count
+      prev_user_climb_count = user.climbs.count
+
       post(:create, params: new_post)
+
       expect(Climb.count).to eq(prev_count + 1)
+      expect(user.climbs.count).to eq(prev_user_climb_count + 1)
+    end
+
+    it "doesn't create a new Climb if the user is not signed in" do
+      sign_out user
+
+      new_post = {
+        climb: {
+          name: "Biographie/Realization",
+          location: "Ceuse, France",
+          grade: "5.15a",
+          discipline: "Sport",
+          pitches: 1
+        }
+      }
+
+      prev_count = Climb.count
+
+      post(:create, params: new_post)
+
+      expect(Climb.count).to eq(prev_count)
     end
   end
 
@@ -57,5 +84,4 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       expect(returned_json[1]["name"]).to eq "Astroman"
     end
   end
-
 end

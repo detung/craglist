@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180207161824) do
+ActiveRecord::Schema.define(version: 20180209204813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,22 +26,16 @@ ActiveRecord::Schema.define(version: 20180207161824) do
     t.text "comment"
     t.decimal "longitude"
     t.decimal "latitude"
-    t.bigint "tick_id"
-    t.bigint "to_do_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "mp_route_id"
-    t.index ["tick_id"], name: "index_climbs_on_tick_id"
-    t.index ["to_do_id"], name: "index_climbs_on_to_do_id"
-  end
-
-  create_table "ticks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.index ["user_id"], name: "index_ticks_on_user_id"
   end
 
   create_table "to_dos", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "climb_id"
+    t.integer "status", default: 0
+    t.index ["climb_id"], name: "index_to_dos_on_climb_id"
     t.index ["user_id"], name: "index_to_dos_on_user_id"
   end
 

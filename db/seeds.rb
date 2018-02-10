@@ -10,11 +10,7 @@ if Rails.env.development?
     user.password = "password"
   end
 
-  todo_list = ToDo.find_or_create_by!(user: user)
-  tick_list = Tick.find_or_create_by!(user: user)
-
   Climb.find_or_create_by!(
-    to_do: todo_list,
     name: "Clusterphobia",
     location: "Rumney, NH",
     grade: "5.10d",
@@ -24,7 +20,6 @@ if Rails.env.development?
     comment: "Want to lead this one"
   )
   Climb.find_or_create_by!(
-    to_do: todo_list,
     name: "Orangahang",
     location: "Rumney, NH",
     grade: "5.12a",
@@ -34,24 +29,28 @@ if Rails.env.development?
     comment: "Maybe my first 5.12a?"
   )
   Climb.find_or_create_by!(
-    tick: tick_list,
     name: "Peer Pressure",
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
     pitches: 1,
     description: "Big rest in the middle",
-    comment: "Proud of this lead"
+    comment: "Proud of this lead",
   )
   Climb.find_or_create_by!(
-    tick: tick_list,
     name: "Underdog",
     location: "Rumney, NH",
     grade: "5.10a",
     discipline: "Sport",
     pitches: 1,
     description: "Fun. Unique hold",
-    comment: "First 5.10a onsight"
+    comment: "First 5.10a onsight",
   )
 
+  user.climbs = Climb.all
+
+  tick1 = ToDo.find_by(user: user, climb: Climb.third)
+  tick1.completed!
+  tick2 = ToDo.find_by(user: user, climb: Climb.last)
+  tick2.completed!
 end
