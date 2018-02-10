@@ -1,30 +1,37 @@
 class Api::V1::ClimbsController < ApiController
 
   def create
-    user = User.first
-    climb = Climb.new(climb_params)
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      user = current_user
+      climb = Climb.new(climb_params)
 
-    if climb.save!
-      user.climbs << climb
-      render json: user.climbs_to_do
+      if climb.save!
+        user.climbs << climb
+        render json: user.climbs_to_do
+      end
     end
   end
 
   def todos
-    user = User.first
-    # if current_user.nil?
-    #   redirect_to new_user_session_path
-    # else
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      user = current_user
       to_do_list = user.climbs_to_do
       render json: to_do_list
-    # end
+    end
   end
 
   def ticks
-    user = User.first
-    tick_list = user.climbs_completed.reverse
-    render json: tick_list
-
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      user = current_user
+      tick_list = user.climbs_completed.reverse
+      render json: tick_list
+    end
   end
 
   private

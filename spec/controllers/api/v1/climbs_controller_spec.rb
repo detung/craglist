@@ -12,6 +12,7 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
     FactoryBot.create(:to_do, user: user, climb: climb2)
     FactoryBot.create(:to_do, user: user, climb: climb3, status: "completed")
     FactoryBot.create(:to_do, user: user, climb: climb4, status: "completed")
+    sign_in user
   end
 
   describe "GET#todo" do
@@ -47,6 +48,26 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
 
       expect(Climb.count).to eq(prev_count + 1)
       expect(user.climbs.count).to eq(prev_user_climb_count + 1)
+    end
+
+    it "doesn't create a new Climb if the user is not signed in" do
+      sign_out user
+
+      new_post = {
+        climb: {
+          name: "Biographie/Realization",
+          location: "Ceuse, France",
+          grade: "5.15a",
+          discipline: "Sport",
+          pitches: 1
+        }
+      }
+
+      prev_count = Climb.count
+
+      post(:create, params: new_post)
+
+      expect(Climb.count).to eq(prev_count)
     end
   end
 
