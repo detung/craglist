@@ -48,17 +48,17 @@ class ToDosContainer extends React.Component {
     }
 
   render() {
-    let climbs = this.state.climbs.map(climb => {
+    let climbs = this.state.climbs.map(route => {
       return(
         <ClimbTile
-          key={climb.id}
-          name={climb.name}
-          location={climb.location}
-          grade={climb.grade}
-          discipline={climb.discipline}
-          pitches={climb.pitches}
-          description={climb.description}
-          comment={climb.comment}
+          key={route.climb.id}
+          name={route.climb.name}
+          location={route.climb.location}
+          grade={route.climb.grade}
+          discipline={route.climb.discipline}
+          pitches={route.climb.pitches}
+          description={route.climb.description}
+          comment={route.comment.body}
         />
       );
     });

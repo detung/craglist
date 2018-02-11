@@ -5,7 +5,6 @@ class Api::V1::ClimbsController < ApiController
       redirect_to new_user_session_path
     else
       user = current_user
-      user = User.first
       climb = Climb.new(climb_params)
 
       if climb.save!
@@ -20,8 +19,8 @@ class Api::V1::ClimbsController < ApiController
       redirect_to new_user_session_path
     else
       user = current_user
-      user = User.first
       to_do_list = user.climbs_to_do
+
       render json: to_do_list
     end
   end
@@ -31,8 +30,8 @@ class Api::V1::ClimbsController < ApiController
       redirect_to new_user_session_path
     else
       user = current_user
-      user = User.first
       tick_list = user.climbs_completed.reverse
+      
       render json: tick_list
     end
   end
@@ -40,6 +39,6 @@ class Api::V1::ClimbsController < ApiController
   private
 
   def climb_params
-    params.require(:climb).permit(:name, :location, :grade, :discipline, :pitches, :description, :comment)
+    params.require(:climb).permit(:name, :location, :grade, :discipline, :pitches, :description)
   end
 end

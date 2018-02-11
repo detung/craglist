@@ -11,7 +11,7 @@ class User < ApplicationRecord
   def climbs_to_do
     todo = []
     ToDo.where(status: "pending").each do |item|
-      todo << item.climb
+      todo << get_climb_hash(item)
     end
     todo
   end
@@ -19,8 +19,16 @@ class User < ApplicationRecord
   def climbs_completed
     completed = []
     ToDo.where(status: "completed").each do |item|
-      completed << item.climb
+      completed << get_climb_hash(item)
     end
     completed
+  end
+
+  def get_climb_hash(to_do_object)
+    climb_object = to_do_object.climb
+    climb_hash = {}
+    climb_hash[:climb] = climb_object
+    climb_hash[:comment] = climb_object.comments.first
+    climb_hash
   end
 end
