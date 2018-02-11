@@ -1,0 +1,24 @@
+.new-form {
+  border: 1px solid rgba(86, 86, 86, 0.2);
+  background-color: rgba(237, 241, 255, 0.8);
+  border-radius: 2px;
+  width: 33%;
+  padding: 2% 3%;
+  margin: auto;
+}
+
+.select-row {
+  display: table
+}
+
+.select-cell {
+  display: table-cell;
+}
+
+#pitches {
+  width: 25%;
+}
+
+textarea {
+  height: 100px;
+}

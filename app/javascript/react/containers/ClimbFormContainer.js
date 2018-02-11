@@ -142,26 +142,32 @@ class ClimbFormContainer extends React.Component {
           value={this.state.location}
           handlerFunction={this.handleLocationChange}
         />
-        <Select
-          label="Grade"
-          name="grade"
-          options={this.state.gradeOptions}
-          selectedOption={this.state.gradeSelected}
-          handlerFunction={this.handleGradeSelection}
-        />
-        <Select
-          label="Type"
-          name="type"
-          options={this.state.typeOptions}
-          selectedOption={this.state.typeSelected}
-          handlerFunction={this.handleTypeSelection}
-        />
-        <NumberField
-          label="Pitches"
-          name="pitches"
-          value={this.state.pitches}
-          handlerFunction={this.handlePitchesChange}
-        />
+        <div className="select-row">
+          <div className="select-cell">
+            <Select
+              label="Grade"
+              options={this.state.gradeOptions}
+              selectedOption={this.state.gradeSelected}
+              handlerFunction={this.handleGradeSelection}
+            />
+          </div>
+          <div className="select-cell">
+            <Select
+              label="Type"
+              options={this.state.typeOptions}
+              selectedOption={this.state.typeSelected}
+              handlerFunction={this.handleTypeSelection}
+            />
+          </div>
+          <div className="select-cell" id="pitches">
+            <NumberField
+              label="Pitches"
+              name="pitches"
+              value={this.state.pitches}
+              handlerFunction={this.handlePitchesChange}
+            />
+          </div>
+        </div>
         <TextArea
           label="Description"
           name="description"
