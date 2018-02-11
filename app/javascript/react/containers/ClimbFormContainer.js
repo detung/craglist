@@ -130,7 +130,7 @@ class ClimbFormContainer extends React.Component {
   render() {
     return(
       <div>
-        <form className="new-form panel" onSubmit={this.handleFormSubmit}>
+        <form className="new-form" onSubmit={this.handleFormSubmit}>
           <TextField
             label="Route Name"
             name="name"
@@ -181,8 +181,10 @@ class ClimbFormContainer extends React.Component {
             value={this.state.comment}
             handlerFunction={this.handleCommentChange}
           />
-          <input className="button" type="submit" value="Submit" />
-          <button className="button" onClick={this.props.toggleNewForm}>Cancel</button>
+          <div className="button-group">
+            <input className="button" type="submit" value="Submit" />
+            <button className="button" onClick={this.props.toggleNewForm}>Cancel</button>
+          </div>
         </form>
         <div className="form-sheet"></div>
       </div>

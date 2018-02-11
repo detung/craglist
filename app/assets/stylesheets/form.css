@@ -4,7 +4,7 @@
   border-radius: 2px;
   width: 33%;
   min-width: 300px;
-  height: 85%;
+  height: 80%;
   padding: 2%;
   margin: auto;
   position: absolute;
@@ -15,7 +15,7 @@
   box-shadow: 0px 1px 2px gray;
   z-index: 2;
   overflow: auto;
-  text-align: center;
+  text-align: left;
 }
 
 .form-sheet {
@@ -45,4 +45,9 @@
 
 textarea {
   height: 100px;
+  border-radius: 5px;
+}
+
+input[type="text"], input[type="number"], select {
+  border-radius: 5px;
 }

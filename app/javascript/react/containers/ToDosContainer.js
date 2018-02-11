@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
+
 import ClimbTile from '../components/ClimbTile';
 import ClimbFormContainer from '../containers/ClimbFormContainer';
+
+import FontAwesomeIcon from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/fontawesome-free-solid';
+
 
 class ToDosContainer extends React.Component {
   constructor(props) {
@@ -34,10 +39,6 @@ class ToDosContainer extends React.Component {
 
   toggleNewForm(event) {
       event.preventDefault()
-      //
-      // if (!this.state.showNewForm) {
-      //   this.setState({ showNewForm: !this.state.showNewForm})
-      // }
       if (this.state.showNewForm === true) {
         this.setState({ showNewForm: false })
       }
@@ -79,7 +80,7 @@ class ToDosContainer extends React.Component {
             <h2>To Do List</h2>
           </div>
           <div className="large-6 column new-button">
-            <button onClick={this.toggleNewForm}>Add a To Do</button>
+            <button onClick={this.toggleNewForm}><FontAwesomeIcon icon={faPlus} /> Add a To Do</button>
           </div>
           <table className="climb-table">
             <thead>

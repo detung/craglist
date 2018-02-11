@@ -3,8 +3,14 @@
 }
 
 .list-container {
-  border: 1px solid rgba(86, 86, 86, 0.2);
+  border: 1px solid rgba(10, 10, 10, 0.2);
   background-color: rgba(237, 241, 255, 0.8);
-  border-radius: 2px;
+  border-radius: 5px;
   padding: 20px;
+  margin-top: 25px;
+}
+
+.fa-plus {
+  font-size: 0.8em;
+  margin-bottom: 2px;
 }
