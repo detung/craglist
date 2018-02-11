@@ -1,19 +1,5 @@
-h2 {
-  height: 60px;
-  padding: 10px 0;
-}
-
-.header {
-  height: 80px;
-}
-
 .new-button {
   text-align: right;
-}
-
-.new-button .button {
-  padding: 14px;
-  margin-top: 19px;
 }
 
 .list-container {

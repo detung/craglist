@@ -9,7 +9,7 @@ const Select = props => {
 
   return (
     <label>{props.label}
-      <select name={props.name} value={props.selectedOption} onChange={props.handlerFunction}>
+      <select value={props.selectedOption} onChange={props.handlerFunction}>
         <option value=""></option>
         {optionElements}
       </select>

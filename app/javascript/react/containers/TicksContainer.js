@@ -46,15 +46,10 @@ class TicksContainer extends React.Component {
 
     return(
       <div>
-        <div className="row header">
+        <div className="row list-container">
           <div className="large-6 column header">
             <h2>Tick List</h2>
           </div>
-          <div className="large-6 column new-button">
-            <Link className="button" to="/addclimb">Add New Tick</Link>
-          </div>
-        </div>
-        <div className="row list-container">
           <table className="climb-table">
             <thead>
               <tr>

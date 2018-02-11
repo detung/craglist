@@ -74,6 +74,7 @@ tbody td:nth-child(8) {
 
 .fa-check {
   color: #828282;
+  font-size: 1.2em;
 }
 
 .fa-trash-alt:hover {
@@ -85,5 +86,6 @@ tbody td:nth-child(8) {
 }
 
 .fa-check:hover {
-  color: #000000;
+  color: #05A305;
+  box-shadow: 0px 1px 2px gray;
 }
