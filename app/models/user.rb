@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :to_dos
   has_many :climbs, through: :to_dos
+  has_many :comments
 
   def climbs_to_do
     todo = []

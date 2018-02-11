@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180209204813) do
+ActiveRecord::Schema.define(version: 20180211160240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,6 @@ ActiveRecord::Schema.define(version: 20180209204813) do
     t.integer "pitches", null: false
     t.text "description"
     t.integer "rating"
-    t.text "comment"
     t.decimal "longitude"
     t.decimal "latitude"
     t.datetime "created_at", null: false
@@ -31,10 +30,22 @@ ActiveRecord::Schema.define(version: 20180209204813) do
     t.integer "mp_route_id"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.text "body"
+    t.bigint "user_id"
+    t.bigint "climb_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["climb_id"], name: "index_comments_on_climb_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
   create_table "to_dos", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "climb_id"
     t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["climb_id"], name: "index_to_dos_on_climb_id"
     t.index ["user_id"], name: "index_to_dos_on_user_id"
   end
