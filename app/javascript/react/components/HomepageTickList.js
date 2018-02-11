@@ -6,7 +6,7 @@ const HomepageTickList = props => {
     <div className="large-6 column home-container">
       <div className="row">
         <div className="large-6 column">
-          <h3>Tick List</h3>
+          <h3>Climbs Ticked</h3>
         </div>
         <div className="large-6 column view-link">
           <Link to='/ticks'>View All Ticks</Link>
