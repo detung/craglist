@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Api::V1::ClimbsController, type: :controller do
-  let!(:user) { FactoryBot.create(:user)}
+  let!(:user) { FactoryBot.create(:user) }
+  let!(:user2) { FactoryBot.create(:user) }
   let!(:climb1) { FactoryBot.create(:climb) }
   let!(:climb2) { FactoryBot.create(:climb, name: "Sheer Lunacy") }
   let!(:climb3) { FactoryBot.create(:climb, name: "Astroman", location: "Yosemite National Park") }
@@ -14,12 +15,12 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
     FactoryBot.create(:to_do, user: user, climb: climb4, status: "completed")
     FactoryBot.create(:comment, user: user, climb: climb1)
     FactoryBot.create(:comment, user: user, climb: climb4)
+    FactoryBot.create(:comment, body: "Gotta practice my crack climb skills", user: user2, climb: climb1)
     sign_in user
   end
 
   describe "GET#todo" do
     it "should return a json of the climbs on the to do list" do
-
       get :todos
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200
@@ -29,6 +30,15 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       expect(returned_json[0]["climb"]["name"]).to eq "Moonlight Buttress"
       expect(returned_json[1]["climb"]["name"]).to eq "Sheer Lunacy"
       expect(returned_json[0]["comment"]["body"]).to eq "Maybe one day"
+    end
+
+    it "should return the user's comment for the climb" do
+      sign_in user2
+
+      get :todos
+      returned_json = JSON.parse(response.body)
+      expect(returned_json[0]["comment"]["body"]).to eq "Gotta practice my crack climb skills"
+      expect(returned_json[0]["comment"]["body"]).to_not eq "Maybe one day"
     end
   end
 
@@ -76,7 +86,6 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
 
   describe "GET#tick" do
     it "should return a json of the climbs on the tick list" do
-
       get :ticks
       returned_json = JSON.parse(response.body)
       expect(response.status).to eq 200

@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def climbs_to_do
     todo = []
-    ToDo.where(status: "pending").each do |item|
+    ToDo.where(user: self, status: "pending").each do |item|
       todo << get_climb_hash(item)
     end
     todo
@@ -18,7 +18,7 @@ class User < ApplicationRecord
 
   def climbs_completed
     completed = []
-    ToDo.where(status: "completed").each do |item|
+    ToDo.where(user: self, status: "completed").each do |item|
       completed << get_climb_hash(item)
     end
     completed
@@ -28,7 +28,10 @@ class User < ApplicationRecord
     climb_object = to_do_object.climb
     climb_hash = {}
     climb_hash[:climb] = climb_object
-    climb_hash[:comment] = climb_object.comments.first
+    climb_hash[:comment] = Comment.find_by(user: self, climb: climb_object)
+    if climb_hash[:comment].nil?
+      climb_hash[:comment] = ""
+    end
     climb_hash
   end
 end

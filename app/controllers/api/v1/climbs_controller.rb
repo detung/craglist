@@ -31,7 +31,7 @@ class Api::V1::ClimbsController < ApiController
     else
       user = current_user
       tick_list = user.climbs_completed.reverse
-      
+
       render json: tick_list
     end
   end
