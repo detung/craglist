@@ -129,59 +129,63 @@ class ClimbFormContainer extends React.Component {
 
   render() {
     return(
-      <form className="new-form panel" onSubmit={this.handleFormSubmit}>
-        <TextField
-          label="Route Name"
-          name="name"
-          value={this.state.routeName}
-          handlerFunction={this.handleNameChange}
-        />
-        <TextField
-          label="Location"
-          name="location"
-          value={this.state.location}
-          handlerFunction={this.handleLocationChange}
-        />
-        <div className="select-row">
-          <div className="select-cell">
-            <Select
-              label="Grade"
-              options={this.state.gradeOptions}
-              selectedOption={this.state.gradeSelected}
-              handlerFunction={this.handleGradeSelection}
-            />
+      <div>
+        <form className="new-form panel" onSubmit={this.handleFormSubmit}>
+          <TextField
+            label="Route Name"
+            name="name"
+            value={this.state.routeName}
+            handlerFunction={this.handleNameChange}
+          />
+          <TextField
+            label="Location"
+            name="location"
+            value={this.state.location}
+            handlerFunction={this.handleLocationChange}
+          />
+          <div className="select-row">
+            <div className="select-cell">
+              <Select
+                label="Grade"
+                options={this.state.gradeOptions}
+                selectedOption={this.state.gradeSelected}
+                handlerFunction={this.handleGradeSelection}
+              />
+            </div>
+            <div className="select-cell">
+              <Select
+                label="Type"
+                options={this.state.typeOptions}
+                selectedOption={this.state.typeSelected}
+                handlerFunction={this.handleTypeSelection}
+              />
+            </div>
+            <div className="select-cell" id="pitches">
+              <NumberField
+                label="Pitches"
+                name="pitches"
+                value={this.state.pitches}
+                handlerFunction={this.handlePitchesChange}
+              />
+            </div>
           </div>
-          <div className="select-cell">
-            <Select
-              label="Type"
-              options={this.state.typeOptions}
-              selectedOption={this.state.typeSelected}
-              handlerFunction={this.handleTypeSelection}
-            />
-          </div>
-          <div className="select-cell" id="pitches">
-            <NumberField
-              label="Pitches"
-              name="pitches"
-              value={this.state.pitches}
-              handlerFunction={this.handlePitchesChange}
-            />
-          </div>
-        </div>
-        <TextArea
-          label="Description"
-          name="description"
-          value={this.state.description}
-          handlerFunction={this.handleDescriptionChange}
-        />
-        <TextArea
-          label="Comment"
-          name="comment"
-          value={this.state.comment}
-          handlerFunction={this.handleCommentChange}
-        />
-        <input className="button" type="submit" value="Submit" />
-      </form>
+          <TextArea
+            label="Description"
+            name="description"
+            value={this.state.description}
+            handlerFunction={this.handleDescriptionChange}
+          />
+          <TextArea
+            label="Comment"
+            name="comment"
+            value={this.state.comment}
+            handlerFunction={this.handleCommentChange}
+          />
+          <input className="button" type="submit" value="Submit" />
+          <button className="button" onClick={this.props.toggleNewForm}>Cancel</button>
+        </form>
+        <div className="form-sheet"></div>
+      </div>
     )
   }
 }

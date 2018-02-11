@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router';
 import ClimbTile from '../components/ClimbTile';
+import ClimbFormContainer from '../containers/ClimbFormContainer';
 
 class ToDosContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      climbs: []
+      climbs: [],
+      showNewForm: false
     };
+
+    this.toggleNewForm = this.toggleNewForm.bind(this)
   };
 
   componentDidMount() {
@@ -28,6 +32,20 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  toggleNewForm(event) {
+      event.preventDefault()
+      //
+      // if (!this.state.showNewForm) {
+      //   this.setState({ showNewForm: !this.state.showNewForm})
+      // }
+      if (this.state.showNewForm === true) {
+        this.setState({ showNewForm: false })
+      }
+      else {
+        this.setState({ showNewForm: true })
+      }
+    }
+
   render() {
     let climbs = this.state.climbs.map(climb => {
       return(
@@ -44,17 +62,25 @@ class ToDosContainer extends React.Component {
       );
     });
 
+    let newForm;
+      if (this.state.showNewForm === true) {
+        newForm =
+        <ClimbFormContainer
+          toggleNewForm={this.toggleNewForm}
+        />
+      } else {
+        newForm = ''
+      }
+
     return(
       <div>
-        <div className="row header">
+        <div className="row list-container">
           <div className="large-6 column">
             <h2>To Do List</h2>
           </div>
           <div className="large-6 column new-button">
-            <Link className="button" to="/addclimb">Add a To Do</Link>
+            <button onClick={this.toggleNewForm}>Add a To Do</button>
           </div>
-        </div>
-        <div className="row list-container">
           <table className="climb-table">
             <thead>
               <tr>
@@ -74,6 +100,7 @@ class ToDosContainer extends React.Component {
             </tbody>
           </table>
         </div>
+        {newForm}
       </div>
     )
   }
