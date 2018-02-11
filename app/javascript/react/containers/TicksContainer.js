@@ -11,7 +11,7 @@ class TicksContainer extends React.Component {
   };
 
   componentDidMount() {
-    fetch('api/v1/climbs/ticks')
+    fetch('api/v1/climbs/ticks', { credentials: 'same-origin' })
       .then(response => {
         if (response.ok) {
          return response;

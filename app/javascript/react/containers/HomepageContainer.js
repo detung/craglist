@@ -19,7 +19,7 @@ class HomepageContainer extends React.Component {
   }
 
   getToDoList() {
-    fetch('api/v1/climbs/todos')
+    fetch('api/v1/climbs/todos', { credentials: 'same-origin' })
       .then(response => {
         if (response.ok) {
          return response;
@@ -37,7 +37,7 @@ class HomepageContainer extends React.Component {
   }
 
   getTickList() {
-    fetch('api/v1/climbs/ticks')
+    fetch('api/v1/climbs/ticks', { credentials: 'same-origin' })
       .then(response => {
         if (response.ok) {
          return response;

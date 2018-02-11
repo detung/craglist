@@ -11,7 +11,7 @@ class ToDosContainer extends React.Component {
   };
 
   componentDidMount() {
-    fetch('api/v1/climbs/todos')
+    fetch('api/v1/climbs/todos', { credentials: 'same-origin' })
       .then(response => {
         if (response.ok) {
          return response;
