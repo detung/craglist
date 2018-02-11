@@ -1,2 +1,6 @@
-<div id="app"></div>
-<%= javascript_pack_tag 'application' %>
+<% if user_signed_in? %>
+  <div id="app"></div>
+  <%= javascript_pack_tag 'application' %>
+<% else %>
+  <h1>Welcome to Craglist</h1>
+<% end %>
