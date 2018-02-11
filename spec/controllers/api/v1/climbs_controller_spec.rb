@@ -12,6 +12,8 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
     FactoryBot.create(:to_do, user: user, climb: climb2)
     FactoryBot.create(:to_do, user: user, climb: climb3, status: "completed")
     FactoryBot.create(:to_do, user: user, climb: climb4, status: "completed")
+    FactoryBot.create(:comment, user: user, climb: climb1)
+    FactoryBot.create(:comment, user: user, climb: climb4)
     sign_in user
   end
 
@@ -24,8 +26,9 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       expect(response.content_type).to eq('application/json')
 
       expect(returned_json.length).to eq 2
-      expect(returned_json[0]["name"]).to eq "Moonlight Buttress"
-      expect(returned_json[1]["name"]).to eq "Sheer Lunacy"
+      expect(returned_json[0]["climb"]["name"]).to eq "Moonlight Buttress"
+      expect(returned_json[1]["climb"]["name"]).to eq "Sheer Lunacy"
+      expect(returned_json[0]["comment"]["body"]).to eq "Maybe one day"
     end
   end
 
@@ -80,8 +83,9 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       expect(response.content_type).to eq('application/json')
 
       expect(returned_json.length).to eq 2
-      expect(returned_json[0]["name"]).to eq "Rostrum"
-      expect(returned_json[1]["name"]).to eq "Astroman"
+      expect(returned_json[0]["climb"]["name"]).to eq "Rostrum"
+      expect(returned_json[1]["climb"]["name"]).to eq "Astroman"
+      expect(returned_json[0]["comment"]["body"]).to eq "Maybe one day"
     end
   end
 end

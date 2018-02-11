@@ -20,6 +20,11 @@ FactoryBot.define do
     discipline "Trad"
     pitches 10
     description "This is a cool rock climb"
-    comment "Maybe one day"
+  end
+
+  factory :comment do
+    body "Maybe one day"
+    association :user
+    association :climb
   end
 end
