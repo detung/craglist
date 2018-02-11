@@ -1,0 +1,16 @@
+.button, button, input[type="submit"] {
+  border-width: 1px;
+  border-color: #72727A;
+  border-radius: 5px;
+  background-color: rgba(60, 135, 208, 0.5);
+  color: inherit;
+  padding: 12px;
+}
+
+.button:hover, button:hover {
+  background-color: rgba(45, 98, 149, 0.7)
+}
+
+.button-group {
+  text-align: center;
+}

@@ -6,7 +6,7 @@ const HomepageToDoList = props => {
     <div className="large-6 column home-container">
       <div className="row">
         <div className="large-6 column">
-          <h3>To-Do List</h3>
+          <h3>Climbs To Do</h3>
         </div>
         <div className="large-6 column view-link">
           <Link to='/todos'>View All To-Dos</Link>
