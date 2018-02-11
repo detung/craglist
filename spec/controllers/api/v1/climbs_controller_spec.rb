@@ -9,13 +9,20 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
   let!(:climb4) { FactoryBot.create(:climb, name: "Rostrum", location: "Yosemite National Park") }
 
   before(:each) do
-    FactoryBot.create(:to_do, user: user, climb: climb1)
-    FactoryBot.create(:to_do, user: user, climb: climb2)
-    FactoryBot.create(:to_do, user: user, climb: climb3, status: "completed")
-    FactoryBot.create(:to_do, user: user, climb: climb4, status: "completed")
+    user.climbs << climb1
+    user.climbs << climb2
+    user.climbs << climb3
+    user.climbs << climb4
+    ToDo.find_by(user: user, climb: climb3).completed!
+    ToDo.find_by(user: user, climb: climb4).completed!
+
+    user2.climbs << climb1
+    user2.climbs << climb2
+
     FactoryBot.create(:comment, user: user, climb: climb1)
     FactoryBot.create(:comment, user: user, climb: climb4)
     FactoryBot.create(:comment, body: "Gotta practice my crack climb skills", user: user2, climb: climb1)
+
     sign_in user
   end
 
@@ -33,6 +40,7 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
     end
 
     it "should return the user's comment for the climb" do
+      sign_out user
       sign_in user2
 
       get :todos
