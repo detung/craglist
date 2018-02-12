@@ -17,6 +17,7 @@ class ToDosContainer extends React.Component {
     };
 
     this.toggleNewForm = this.toggleNewForm.bind(this)
+    this.addNewClimb = this.addNewClimb.bind(this)
   };
 
   componentDidMount() {
@@ -37,6 +38,32 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  addNewClimb(formPayload) {
+    fetch('/api/v1/climbs', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          climbs: body,
+          showNewForm: false
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
   toggleNewForm(event) {
       event.preventDefault()
       if (this.state.showNewForm === true) {
@@ -48,17 +75,17 @@ class ToDosContainer extends React.Component {
     }
 
   render() {
-    let climbs = this.state.climbs.map(climb => {
+    let climbs = this.state.climbs.map(route => {
       return(
         <ClimbTile
-          key={climb.id}
-          name={climb.name}
-          location={climb.location}
-          grade={climb.grade}
-          discipline={climb.discipline}
-          pitches={climb.pitches}
-          description={climb.description}
-          comment={climb.comment}
+          key={route.climb.id}
+          name={route.climb.name}
+          location={route.climb.location}
+          grade={route.climb.grade}
+          discipline={route.climb.discipline}
+          pitches={route.climb.pitches}
+          description={route.climb.description}
+          comment={route.comment.body}
         />
       );
     });
@@ -68,6 +95,7 @@ class ToDosContainer extends React.Component {
         newForm =
         <ClimbFormContainer
           toggleNewForm={this.toggleNewForm}
+          addNewClimb={this.addNewClimb}
         />
       } else {
         newForm = ''

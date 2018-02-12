@@ -10,45 +10,46 @@ if Rails.env.development?
     user.password = "password"
   end
 
-  Climb.find_or_create_by!(
+  climb1 = Climb.find_or_create_by!(
     name: "Clusterphobia",
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
     pitches: 1,
-    description: "A fun slightly steep climb",
-    comment: "Want to lead this one"
+    description: "A fun slightly steep climb"
   )
-  Climb.find_or_create_by!(
+  climb2 = Climb.find_or_create_by!(
     name: "Orangahang",
     location: "Rumney, NH",
     grade: "5.12a",
     discipline: "Sport",
     pitches: 1,
-    description: "Steep powerful climbing on jugs",
-    comment: "Maybe my first 5.12a?"
+    description: "Steep powerful climbing on jugs"
   )
-  Climb.find_or_create_by!(
+  climb3 = Climb.find_or_create_by!(
     name: "Peer Pressure",
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
     pitches: 1,
-    description: "Big rest in the middle",
-    comment: "Proud of this lead",
+    description: "Big rest in the middle"
   )
-  Climb.find_or_create_by!(
+  climb4 = Climb.find_or_create_by!(
     name: "Underdog",
     location: "Rumney, NH",
     grade: "5.10a",
     discipline: "Sport",
     pitches: 1,
-    description: "Fun. Unique hold",
-    comment: "First 5.10a onsight",
+    description: "Fun. Unique hold"
   )
 
   user.climbs = Climb.all
 
+  Comment.find_or_create_by!(body: "Want to lead this one", user: user, climb: climb1)
+  Comment.find_or_create_by!(body: "Maybe my first 5.12a?", user: user, climb: climb2)
+  Comment.find_or_create_by!(body: "Proud of this lead", user: user, climb: climb3)
+  Comment.find_or_create_by!(body: "First 5.10a onsight", user: user, climb: climb4)
+  
   tick1 = ToDo.find_by(user: user, climb: Climb.third)
   tick1.completed!
   tick2 = ToDo.find_by(user: user, climb: Climb.last)

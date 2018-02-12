@@ -95,36 +95,20 @@ class ClimbFormContainer extends React.Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    let formPayload = {
-      name: this.state.routeName,
-      location: this.state.location,
-      grade: this.state.gradeSelected,
-      discipline: this.state.typeSelected,
-      pitches: this.state.pitches,
-      description: this.state.description,
-      comment: this.state.comment
+    let formPayloadClimb = {
+      climb: {
+        name: this.state.routeName,
+        location: this.state.location,
+        grade: this.state.gradeSelected,
+        discipline: this.state.typeSelected,
+        pitches: this.state.pitches,
+        description: this.state.description
+      },
+      comment: {
+        body: this.state.comment
+      }
     };
-    this.addNewRoute(formPayload);
-    browserHistory.push('/');
-  }
-
-  addNewRoute(formPayload) {
-    fetch('/api/v1/climbs', {
-      credentials: 'same-origin',
-      method: 'POST',
-      body: JSON.stringify(formPayload),
-      headers: { 'Content-Type': 'application/json' }
-    })
-      .then(response => {
-       if (response.ok) {
-         return response;
-       } else {
-         let errorMessage = `${response.status} (${response.statusText})`,
-             error = new Error(errorMessage);
-         throw(error);
-       }
-     })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    this.props.addNewClimb(formPayloadClimb);
   }
 
   render() {

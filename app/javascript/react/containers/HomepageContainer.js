@@ -55,26 +55,26 @@ class HomepageContainer extends React.Component {
   }
 
   render() {
-    let toDos = this.state.toDoList.map(climb => {
+    let toDos = this.state.toDoList.map(route => {
       return(
         <HomepageClimbTile
-          key={climb.id}
-          name={climb.name}
-          grade={climb.grade}
-          discipline={climb.discipline}
-          location={climb.location}
+          key={route.climb.id}
+          name={route.climb.name}
+          grade={route.climb.grade}
+          discipline={route.climb.discipline}
+          location={route.climb.location}
         />
       )
     });
 
-    let ticks = this.state.tickList.map(climb => {
+    let ticks = this.state.tickList.map(route => {
       return(
         <HomepageClimbTile
-          key={climb.id}
-          name={climb.name}
-          grade={climb.grade}
-          discipline={climb.discipline}
-          location={climb.location}
+          key={route.climb.id}
+          name={route.climb.name}
+          grade={route.climb.grade}
+          discipline={route.climb.discipline}
+          location={route.climb.location}
         />
       )
     });

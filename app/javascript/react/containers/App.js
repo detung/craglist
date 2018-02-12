@@ -10,7 +10,6 @@ const App = props => {
   return(
     <Router history={browserHistory}>
       <Route path='/' component={HomepageContainer} />
-      <Route path='/addclimb' component={ClimbFormContainer} />
       <Route path='/todos' component={ToDosContainer} />
       <Route path='/ticks' component={TicksContainer} />
     </Router>
