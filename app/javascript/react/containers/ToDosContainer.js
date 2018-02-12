@@ -14,12 +14,15 @@ class ToDosContainer extends React.Component {
     super(props);
     this.state = {
       climbs: [],
-      showNewForm: false
+      selectedComment: '',
+      showNewForm: false,
+      showEditForm: false
     };
 
     this.toggleNewForm = this.toggleNewForm.bind(this)
     this.addNewClimb = this.addNewClimb.bind(this)
     this.editComment = this.editComment.bind(this)
+    this.renderEditCommentForm = this.renderEditCommentForm.bind(this)
   };
 
   componentDidMount() {
@@ -66,6 +69,21 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  renderEditCommentForm(event, comment) {
+    event.preventDefault();
+    if (this.state.showEditForm === true) {
+      this.setState({
+        showEditForm: false,
+        selectedComment: ''
+      })
+    }
+    else {
+      this.setState({
+        showEditForm: true,
+        selectedComment: comment
+      })
+    }
+  }
 
   editComment(formPayload) {
     let id = formPayload.id
@@ -135,7 +153,7 @@ class ToDosContainer extends React.Component {
     let climbs = this.state.climbs.map(route => {
 
       let clickEdit = () => {
-        this.editComment(route.comment.body)
+        this.renderEditCommentForm(event, route.comment)
       }
 
       let clickDelete = () => {
@@ -152,6 +170,7 @@ class ToDosContainer extends React.Component {
           pitches={route.climb.pitches}
           description={route.climb.description}
           comment={route.comment.body}
+          clickEdit={clickEdit}
           clickDelete={clickDelete}
         />
       );
@@ -168,11 +187,17 @@ class ToDosContainer extends React.Component {
         newForm = ''
       };
 
-    let editForm =
-      <EditCommentForm
-        editComment={this.editComment}
-        selectedComment={}
-      />
+    let editForm;
+      if (this.state.showEditForm === true) {
+        editForm =
+        <EditCommentForm
+          editComment={this.editComment}
+          selectedComment={this.state.selectedComment}
+          toggleForm={this.renderEditCommentForm}
+        />
+      } else {
+        editForm = ''
+      };
 
     return(
       <div>
