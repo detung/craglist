@@ -65,26 +65,30 @@ class ToDosContainer extends React.Component {
   }
 
   deleteToDo(id) {
-    fetch(`/api/v1/to_dos/${id}`, {
-      credentials: 'same-origin',
-      method: 'DELETE'
-    })
-      .then(response => {
-       if (response.ok) {
-         return response;
-       } else {
-         let errorMessage = `${response.status} (${response.statusText})`,
-             error = new Error(errorMessage);
-         throw(error);
-       }
-     })
-      .then(response => response.json())
-      .then(body => {
-        this.setState({
-          climbs: body,
-        });
+    let confirmDelete = confirm('Are you sure?');
+
+    if (confirmDelete) {
+      fetch(`/api/v1/to_dos/${id}`, {
+        credentials: 'same-origin',
+        method: 'DELETE'
       })
-      .catch(error => console.error(`Error in fetch: ${error.message}`));
+        .then(response => {
+         if (response.ok) {
+           return response;
+         } else {
+           let errorMessage = `${response.status} (${response.statusText})`,
+               error = new Error(errorMessage);
+           throw(error);
+         }
+       })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({
+            climbs: body,
+          });
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
   }
 
   toggleNewForm(event) {
