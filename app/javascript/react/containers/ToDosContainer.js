@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import ClimbTile from '../components/ClimbTile';
-import ClimbFormContainer from '../containers/ClimbFormContainer';
+import ClimbFormContainer from './ClimbFormContainer';
+import EditCommentForm from './EditCommentForm';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/fontawesome-free-solid';
@@ -18,6 +19,7 @@ class ToDosContainer extends React.Component {
 
     this.toggleNewForm = this.toggleNewForm.bind(this)
     this.addNewClimb = this.addNewClimb.bind(this)
+    this.editComment = this.editComment.bind(this)
   };
 
   componentDidMount() {
@@ -64,6 +66,35 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  editComment(formPayload) {
+    let id = formPayload.id
+
+    fetch(`/api/v1/to_dos/${id}`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(formPayload)
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          climbs: body,
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+
+  }
+
   toggleNewForm(event) {
       event.preventDefault()
       if (this.state.showNewForm === true) {
@@ -76,6 +107,10 @@ class ToDosContainer extends React.Component {
 
   render() {
     let climbs = this.state.climbs.map(route => {
+
+      let clickEdit = () => {
+        this.editComment(route.comment.body)
+      }
       return(
         <ClimbTile
           key={route.climb.id}
@@ -99,7 +134,13 @@ class ToDosContainer extends React.Component {
         />
       } else {
         newForm = ''
-      }
+      };
+
+    let editForm =
+      <EditCommentForm
+        editComment={this.editComment}
+        selectedComment={}
+      />
 
     return(
       <div>
@@ -130,6 +171,7 @@ class ToDosContainer extends React.Component {
           </table>
         </div>
         {newForm}
+        {editForm}
       </div>
     )
   }
