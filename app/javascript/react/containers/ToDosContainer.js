@@ -19,10 +19,12 @@ class ToDosContainer extends React.Component {
       showEditForm: false
     };
 
-    this.toggleNewForm = this.toggleNewForm.bind(this)
     this.addNewClimb = this.addNewClimb.bind(this)
+    this.completeToDo = this.completeToDo.bind(this)
+    this.deleteToDo = this.deleteToDo.bind(this)
     this.editComment = this.editComment.bind(this)
     this.renderEditCommentForm = this.renderEditCommentForm.bind(this)
+    this.toggleNewForm = this.toggleNewForm.bind(this)
   };
 
   componentDidMount() {
@@ -69,11 +71,36 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  deleteToDo(id) {
+  completeToDo(climbId, comment) {
+    fetch(`/api/v1/to_dos/${climbId}`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(comment)
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          climbs: body,
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  deleteToDo(climbId) {
     let confirmDelete = confirm('Are you sure?');
 
     if (confirmDelete) {
-      fetch(`/api/v1/to_dos/${id}`, {
+      fetch(`/api/v1/to_dos/${climbId}`, {
         credentials: 'same-origin',
         method: 'DELETE'
       })
@@ -160,6 +187,10 @@ class ToDosContainer extends React.Component {
         this.deleteToDo(route.climb.id)
       }
 
+      let clickCheck = () => {
+        this.completeToDo(route.climb.id, route.comment)
+      }
+
       return(
         <ClimbTile
           key={route.climb.id}
@@ -172,6 +203,7 @@ class ToDosContainer extends React.Component {
           comment={route.comment.body}
           clickEdit={clickEdit}
           clickDelete={clickDelete}
+          clickCheck={clickCheck}
         />
       );
     });

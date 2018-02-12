@@ -8,7 +8,7 @@ const ClimbTile = props => {
   return(
     <tr>
       <td>
-        <FontAwesomeIcon icon={faCheck} />
+        <FontAwesomeIcon icon={faCheck} onClick={props.clickCheck} />
       </td>
       <td>
         {props.name}

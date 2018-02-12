@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       end
 
       resources :comments, only: [:update]
-      resources :to_dos, only: [:destroy]
+      resources :to_dos, only: [:update, :destroy]
 
     end
   end
