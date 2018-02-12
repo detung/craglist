@@ -12,10 +12,12 @@ class Api::V1::ClimbsController < ApiController
 
       if new_climb.save!
         user.climbs << new_climb
+      else
+        render json: { error: climb.errors.full_messages }, status: :unprocessable_entity
       end
 
       new_comment.save!
-
+        
       render json: user.climbs_to_do
     end
   end
