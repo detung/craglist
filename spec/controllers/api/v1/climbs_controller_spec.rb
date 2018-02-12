@@ -51,38 +51,47 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
   end
 
   describe "POST#create" do
-    it "creates a new Climb" do
-      new_post = {
+    let(:new_post) {
+      {
         climb: {
           name: "Biographie/Realization",
           location: "Ceuse, France",
           grade: "5.15a",
           discipline: "Sport",
           pitches: 1
+        },
+        comment: {
+          body: "The classic elite testpiece"
         }
       }
+    }
 
+    it "creates a new Climb that is owned by the current user" do
       prev_count = Climb.count
       prev_user_climb_count = user.climbs.count
+      prev_user2_climb_count = user2.climbs.count
 
       post(:create, params: new_post)
 
       expect(Climb.count).to eq(prev_count + 1)
       expect(user.climbs.count).to eq(prev_user_climb_count + 1)
+      expect(user2.climbs.count).to eq(prev_user2_climb_count)
+    end
+
+    it "creates a new Comment that belongs to the user and the Climb" do
+      prev_comment_count = Comment.count
+
+      post(:create, params: new_post)
+
+      new_climb = Climb.last
+      new_comment = Comment.find_by(user: user, climb: new_climb)
+
+      expect(Comment.count).to eq(prev_comment_count + 1)
+      expect(new_comment.body).to eq("The classic elite testpiece")
     end
 
     it "doesn't create a new Climb if the user is not signed in" do
       sign_out user
-
-      new_post = {
-        climb: {
-          name: "Biographie/Realization",
-          location: "Ceuse, France",
-          grade: "5.15a",
-          discipline: "Sport",
-          pitches: 1
-        }
-      }
 
       prev_count = Climb.count
 

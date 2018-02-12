@@ -5,12 +5,18 @@ class Api::V1::ClimbsController < ApiController
       redirect_to new_user_session_path
     else
       user = current_user
-      climb = Climb.new(climb_params)
+      new_climb = Climb.new(climb_params)
+      new_comment = Comment.new(comment_params)
+      new_comment.user = current_user
+      new_comment.climb = new_climb
 
-      if climb.save!
-        user.climbs << climb
-        render json: user.climbs_to_do
+      if new_climb.save!
+        user.climbs << new_climb
       end
+
+      new_comment.save!
+
+      render json: user.climbs_to_do
     end
   end
 
@@ -40,5 +46,9 @@ class Api::V1::ClimbsController < ApiController
 
   def climb_params
     params.require(:climb).permit(:name, :location, :grade, :discipline, :pitches, :description)
+  end
+
+  def comment_params
+    params.require(:comment).permit(:body)
   end
 end

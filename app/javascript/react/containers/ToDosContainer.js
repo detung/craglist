@@ -17,6 +17,7 @@ class ToDosContainer extends React.Component {
     };
 
     this.toggleNewForm = this.toggleNewForm.bind(this)
+    this.addNewClimb = this.addNewClimb.bind(this)
   };
 
   componentDidMount() {
@@ -33,6 +34,32 @@ class ToDosContainer extends React.Component {
       .then(response => response.json())
       .then(body => {
         this.setState({ climbs: body });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+  }
+
+  addNewClimb(formPayload) {
+    fetch('/api/v1/climbs', {
+      credentials: 'same-origin',
+      method: 'POST',
+      body: JSON.stringify(formPayload),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          climbs: body,
+          showNewForm: false
+        });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -68,6 +95,7 @@ class ToDosContainer extends React.Component {
         newForm =
         <ClimbFormContainer
           toggleNewForm={this.toggleNewForm}
+          addNewClimb={this.addNewClimb}
         />
       } else {
         newForm = ''
