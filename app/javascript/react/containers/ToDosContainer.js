@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import ClimbTile from '../components/ClimbTile';
-import ClimbFormContainer from '../containers/ClimbFormContainer';
+import ClimbFormContainer from './ClimbFormContainer';
+import EditCommentForm from './EditCommentForm';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/fontawesome-free-solid';
@@ -13,11 +14,15 @@ class ToDosContainer extends React.Component {
     super(props);
     this.state = {
       climbs: [],
-      showNewForm: false
+      selectedComment: '',
+      showNewForm: false,
+      showEditForm: false
     };
 
     this.toggleNewForm = this.toggleNewForm.bind(this)
     this.addNewClimb = this.addNewClimb.bind(this)
+    this.editComment = this.editComment.bind(this)
+    this.renderEditCommentForm = this.renderEditCommentForm.bind(this)
   };
 
   componentDidMount() {
@@ -91,6 +96,49 @@ class ToDosContainer extends React.Component {
     }
   }
 
+  editComment(formPayload) {
+    let id = formPayload.id
+    fetch(`/api/v1/comments/${id}`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(formPayload)
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          climbs: body,
+          showEditForm: false
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+
+  renderEditCommentForm(event, comment) {
+    event.preventDefault();
+    if (this.state.showEditForm === true) {
+      this.setState({
+        showEditForm: false,
+        selectedComment: ''
+      })
+    }
+    else {
+      this.setState({
+        showEditForm: true,
+        selectedComment: comment
+      })
+    }
+  }
+
   toggleNewForm(event) {
       event.preventDefault()
       if (this.state.showNewForm === true) {
@@ -103,6 +151,10 @@ class ToDosContainer extends React.Component {
 
   render() {
     let climbs = this.state.climbs.map(route => {
+
+      let clickEdit = () => {
+        this.renderEditCommentForm(event, route.comment)
+      }
 
       let clickDelete = () => {
         this.deleteToDo(route.climb.id)
@@ -118,6 +170,7 @@ class ToDosContainer extends React.Component {
           pitches={route.climb.pitches}
           description={route.climb.description}
           comment={route.comment.body}
+          clickEdit={clickEdit}
           clickDelete={clickDelete}
         />
       );
@@ -132,7 +185,19 @@ class ToDosContainer extends React.Component {
         />
       } else {
         newForm = ''
-      }
+      };
+
+    let editForm;
+      if (this.state.showEditForm === true) {
+        editForm =
+        <EditCommentForm
+          editComment={this.editComment}
+          selectedComment={this.state.selectedComment}
+          toggleForm={this.renderEditCommentForm}
+        />
+      } else {
+        editForm = ''
+      };
 
     return(
       <div>
@@ -163,6 +228,7 @@ class ToDosContainer extends React.Component {
           </table>
         </div>
         {newForm}
+        {editForm}
       </div>
     )
   }

@@ -6,7 +6,7 @@ const TextArea = props => {
       <textarea
         name={props.name}
         onChange={props.handlerFunction}
-        value={props.content}
+        value={props.value}
       />
     </label>
   );
