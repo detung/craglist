@@ -32,7 +32,7 @@ const ClimbTile = props => {
         <FontAwesomeIcon icon={faEdit} />
       </td>
       <td>
-        <FontAwesomeIcon icon={faTrashAlt} />
+        <FontAwesomeIcon icon={faTrashAlt} onClick={props.clickDelete} />
       </td>
     </tr>
   )

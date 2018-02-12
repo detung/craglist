@@ -7,7 +7,10 @@ Rails.application.routes.draw do
         get 'todos', on: :collection
         get 'ticks', on: :collection
       end
+
       resources :comments, only: [:edit, :update]
+      resources :to_dos, only: [:destroy]
+
     end
   end
 

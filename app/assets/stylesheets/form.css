@@ -2,10 +2,12 @@
   border: 1px solid rgba(86, 86, 86, 0.2);
   background-color: rgba(237, 241, 255, 0.95);
   border-radius: 2px;
-  width: 33%;
+  width: 450px;
   min-width: 300px;
-  height: 80%;
+  height: 600px;
+  min-height: 300px;
   padding: 2%;
+  padding-bottom: 20px;
   margin: auto;
   position: absolute;
   left: 0;

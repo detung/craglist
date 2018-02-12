@@ -66,6 +66,7 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+
   editComment(formPayload) {
     let id = formPayload.id
 
@@ -93,6 +94,31 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
+  deleteToDo(id) {
+    let confirmDelete = confirm('Are you sure?');
+
+    if (confirmDelete) {
+      fetch(`/api/v1/to_dos/${id}`, {
+        credentials: 'same-origin',
+        method: 'DELETE'
+      })
+        .then(response => {
+         if (response.ok) {
+           return response;
+         } else {
+           let errorMessage = `${response.status} (${response.statusText})`,
+               error = new Error(errorMessage);
+           throw(error);
+         }
+       })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({
+            climbs: body,
+          });
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
   }
 
   toggleNewForm(event) {
@@ -111,6 +137,11 @@ class ToDosContainer extends React.Component {
       let clickEdit = () => {
         this.editComment(route.comment.body)
       }
+
+      let clickDelete = () => {
+        this.deleteToDo(route.climb.id)
+      }
+
       return(
         <ClimbTile
           key={route.climb.id}
@@ -121,6 +152,7 @@ class ToDosContainer extends React.Component {
           pitches={route.climb.pitches}
           description={route.climb.description}
           comment={route.comment.body}
+          clickDelete={clickDelete}
         />
       );
     });
