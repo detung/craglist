@@ -69,19 +69,30 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  renderEditCommentForm(event, comment) {
-    event.preventDefault();
-    if (this.state.showEditForm === true) {
-      this.setState({
-        showEditForm: false,
-        selectedComment: ''
+  deleteToDo(id) {
+    let confirmDelete = confirm('Are you sure?');
+
+    if (confirmDelete) {
+      fetch(`/api/v1/to_dos/${id}`, {
+        credentials: 'same-origin',
+        method: 'DELETE'
       })
-    }
-    else {
-      this.setState({
-        showEditForm: true,
-        selectedComment: comment
-      })
+        .then(response => {
+         if (response.ok) {
+           return response;
+         } else {
+           let errorMessage = `${response.status} (${response.statusText})`,
+               error = new Error(errorMessage);
+           throw(error);
+         }
+       })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({
+            climbs: body,
+          });
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
   }
 
@@ -112,30 +123,19 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
-  deleteToDo(id) {
-    let confirmDelete = confirm('Are you sure?');
-
-    if (confirmDelete) {
-      fetch(`/api/v1/to_dos/${id}`, {
-        credentials: 'same-origin',
-        method: 'DELETE'
+  renderEditCommentForm(event, comment) {
+    event.preventDefault();
+    if (this.state.showEditForm === true) {
+      this.setState({
+        showEditForm: false,
+        selectedComment: ''
       })
-        .then(response => {
-         if (response.ok) {
-           return response;
-         } else {
-           let errorMessage = `${response.status} (${response.statusText})`,
-               error = new Error(errorMessage);
-           throw(error);
-         }
-       })
-        .then(response => response.json())
-        .then(body => {
-          this.setState({
-            climbs: body,
-          });
-        })
-        .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+    else {
+      this.setState({
+        showEditForm: true,
+        selectedComment: comment
+      })
     }
   }
 
