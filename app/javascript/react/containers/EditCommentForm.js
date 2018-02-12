@@ -12,7 +12,7 @@ class EditCommentForm extends React.Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
   }
 
-  handleCommentChange() {
+  handleCommentChange(event) {
     let commentObject = this.state.comment;
     commentObject.body = event.target.value;
     this.setState({ comment: commentObject })

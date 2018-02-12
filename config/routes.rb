@@ -8,7 +8,7 @@ Rails.application.routes.draw do
         get 'ticks', on: :collection
       end
 
-      resources :comments, only: [:edit, :update]
+      resources :comments, only: [:update]
       resources :to_dos, only: [:destroy]
 
     end

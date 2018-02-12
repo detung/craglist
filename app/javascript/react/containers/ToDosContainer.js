@@ -87,8 +87,7 @@ class ToDosContainer extends React.Component {
 
   editComment(formPayload) {
     let id = formPayload.id
-
-    fetch(`/api/v1/to_dos/${id}`, {
+    fetch(`/api/v1/comments/${id}`, {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin',
       method: 'PATCH',
@@ -107,6 +106,7 @@ class ToDosContainer extends React.Component {
       .then(body => {
         this.setState({
           climbs: body,
+          showEditForm: false
         });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
