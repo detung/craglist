@@ -1,6 +1,6 @@
 .new-form, .edit-form, .completed-form {
   border: 1px solid rgba(86, 86, 86, 0.2);
-  background-color: rgba(237, 241, 255, 0.95);
+  background-color: #FAFBFC;
   border-radius: 2px;
   width: 450px;
   min-width: 300px;
@@ -62,4 +62,8 @@ textarea {
 
 input[type="text"], input[type="number"], select {
   border-radius: 5px;
+}
+
+label {
+  font-size: 1em;
 }
