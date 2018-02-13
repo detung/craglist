@@ -63,3 +63,7 @@ textarea {
 input[type="text"], input[type="number"], select {
   border-radius: 5px;
 }
+
+label {
+  font-size: 1em;
+}
