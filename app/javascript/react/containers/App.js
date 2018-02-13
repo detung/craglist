@@ -5,6 +5,8 @@ import ClimbFormContainer from './ClimbFormContainer';
 import ToDosContainer from './ToDosContainer';
 import TicksContainer from './TicksContainer';
 
+import SearchContainer from './SearchContainer';
+
 const App = props => {
 
   return(
@@ -12,6 +14,7 @@ const App = props => {
       <Route path='/' component={HomepageContainer} />
       <Route path='/todos' component={ToDosContainer} />
       <Route path='/ticks' component={TicksContainer} />
+      <Route path='/search' component={SearchContainer} />
     </Router>
   )
 }
