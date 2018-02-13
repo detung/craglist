@@ -115,6 +115,7 @@ class ClimbFormContainer extends React.Component {
     return(
       <div>
         <form className="new-form" onSubmit={this.handleFormSubmit}>
+          <h3>Add New Climb</h3>
           <TextField
             label="Route Name"
             name="name"

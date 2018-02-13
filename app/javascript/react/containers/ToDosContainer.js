@@ -4,10 +4,10 @@ import { Link } from 'react-router';
 import ClimbTile from '../components/ClimbTile';
 import ClimbFormContainer from './ClimbFormContainer';
 import EditCommentForm from './EditCommentForm';
+import CompletedClimbForm from './CompletedClimbForm';
 
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/fontawesome-free-solid';
-
 
 class ToDosContainer extends React.Component {
   constructor(props) {
@@ -16,13 +16,15 @@ class ToDosContainer extends React.Component {
       climbs: [],
       selectedComment: '',
       showNewForm: false,
-      showEditForm: false
+      showEditForm: false,
+      showCompletedForm: false
     };
 
     this.addNewClimb = this.addNewClimb.bind(this)
     this.completeToDo = this.completeToDo.bind(this)
     this.deleteToDo = this.deleteToDo.bind(this)
     this.editComment = this.editComment.bind(this)
+    this.renderCompletedForm = this.renderCompletedForm.bind(this)
     this.renderEditCommentForm = this.renderEditCommentForm.bind(this)
     this.toggleNewForm = this.toggleNewForm.bind(this)
   };
@@ -71,12 +73,12 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  completeToDo(climbId, comment) {
-    fetch(`/api/v1/to_dos/${climbId}`, {
+  completeToDo(formPayload) {
+    fetch(`/api/v1/comments/completed`, {
       headers: { 'Content-Type': 'application/json' },
       credentials: 'same-origin',
       method: 'PATCH',
-      body: JSON.stringify(comment)
+      body: JSON.stringify(formPayload)
     })
       .then(response => {
        if (response.ok) {
@@ -91,6 +93,7 @@ class ToDosContainer extends React.Component {
       .then(body => {
         this.setState({
           climbs: body,
+          showCompletedForm: false
         });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
@@ -150,6 +153,21 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
+  renderCompletedForm(event, comment) {
+    event.preventDefault();
+    if (this.state.showCompletedForm === true) {
+      this.setState({
+        showCompletedForm: false,
+        selectedComment: ''
+      })
+    } else {
+      this.setState({
+        showCompletedForm: true,
+        selectedComment: comment
+      })
+    }
+  }
+
   renderEditCommentForm(event, comment) {
     event.preventDefault();
     if (this.state.showEditForm === true) {
@@ -157,8 +175,7 @@ class ToDosContainer extends React.Component {
         showEditForm: false,
         selectedComment: ''
       })
-    }
-    else {
+    } else {
       this.setState({
         showEditForm: true,
         selectedComment: comment
@@ -188,7 +205,7 @@ class ToDosContainer extends React.Component {
       }
 
       let clickCheck = () => {
-        this.completeToDo(route.climb.id, route.comment)
+        this.renderCompletedForm(event, route.comment)
       }
 
       return(
@@ -231,6 +248,19 @@ class ToDosContainer extends React.Component {
         editForm = ''
       };
 
+      let completedForm;
+      if (this.state.showCompletedForm === true) {
+        completedForm =
+        <CompletedClimbForm
+          climbId={this.state.selectedclimbId}
+          completeToDo={this.completeToDo}
+          selectedComment={this.state.selectedComment}
+          toggleForm={this.renderCompletedForm}
+        />
+      } else {
+        completedForm = ''
+      };
+
     return(
       <div>
         <div className="row list-container">
@@ -261,6 +291,7 @@ class ToDosContainer extends React.Component {
         </div>
         {newForm}
         {editForm}
+        {completedForm}
       </div>
     )
   }
