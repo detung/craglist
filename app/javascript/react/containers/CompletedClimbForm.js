@@ -1,7 +1,7 @@
 import React from 'react';
 import TextArea from '../components/TextArea';
 
-class EditCommentForm extends React.Component {
+class CompletedClimbForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -21,19 +21,20 @@ class EditCommentForm extends React.Component {
   handleFormSubmit(event) {
     event.preventDefault();
     let formPayload = {
-      id: this.state.comment.id,
+      climbId: this.state.comment.climb_id,
+      commentId: this.state.comment.id,
       body: this.state.comment.body
     }
-    this.props.editComment(formPayload);
+    this.props.completeToDo(formPayload);
   }
 
   render() {
     return(
       <div>
-        <form className="edit-form" onSubmit={this.handleFormSubmit}>
-          <h3>Edit Comment</h3>
+        <form className="completed-form" onSubmit={this.handleFormSubmit}>
+          <h3>Add New Tick</h3>
           <TextArea
-            label="Comment"
+            label="Update Comment/Send Notes"
             name="comment"
             value={this.state.comment.body}
             handlerFunction={this.handleCommentChange}
@@ -49,4 +50,4 @@ class EditCommentForm extends React.Component {
   }
 }
 
-export default EditCommentForm;
+export default CompletedClimbForm;
