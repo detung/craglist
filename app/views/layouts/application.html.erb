@@ -38,8 +38,9 @@
   </nav>
 
   <%- flash.each do |key, value| -%>
-    <div class="flash flash-<%= key %> alert-box success">
+    <div data-alert class="flash flash-<%= key %> alert-box success radius">
       <%= value %>
+      <a href="#" class="close">&times;</a>
     </div>
   <%- end -%>
 
