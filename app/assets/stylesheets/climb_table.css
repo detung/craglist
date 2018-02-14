@@ -5,6 +5,7 @@
   table-layout: fixed;
   border-collapse: collapse;
   margin-bottom: 0px;
+  overflow-x: auto;
 }
 
 .climb-table thead {
