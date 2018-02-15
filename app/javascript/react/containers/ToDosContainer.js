@@ -265,7 +265,7 @@ class ToDosContainer extends React.Component {
       <div>
         <div className="row list-container">
           <div className="large-6 column">
-            <h2>To Do List</h2>
+            <h2>Climbs To Do</h2>
           </div>
           <div className="large-6 column new-button">
             <button onClick={this.toggleNewForm}><FontAwesomeIcon icon={faPlus} /> Add a To Do</button>
