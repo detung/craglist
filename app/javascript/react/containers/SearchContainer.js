@@ -1,4 +1,6 @@
 import React from 'react';
+import { Router, browserHistory } from 'react-router';
+
 import Select from '../components/Select';
 import SearchField from '../components/SearchField';
 import SearchResults from '../components/SearchResults';

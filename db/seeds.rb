@@ -108,8 +108,7 @@ if Rails.env.development?
   climbs_ticked << ToDo.find_by(user: user, climb: metamorphosis)
   climbs_ticked << ToDo.find_by(user: user, climb: masterpiece)
   climbs_ticked << ToDo.find_by(user: user, climb: glory_jeans)
-  # tick1 = ToDo.find_by(user: user, climb: peer_pressure)
-  # tick1.completed!
-  # tick2 = ToDo.find_by(user: user, climb: underdog)
-  # tick2.completed!
+  climbs_ticked.each do |climb|
+    climb.completed!
+  end
 end

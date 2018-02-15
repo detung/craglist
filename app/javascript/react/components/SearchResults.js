@@ -1,14 +1,11 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
+import { Router, browserHistory } from 'react-router';
 
 import SearchResultTile from './SearchResultTile';
 
 class SearchResults extends React.Component {
   constructor(props) {
     super(props)
-    // this.state = {
-    //   suggestedClimbs: this.props.results
-    // }
   }
 
   submitSelectedClimb(route) {
@@ -36,6 +33,7 @@ class SearchResults extends React.Component {
       })
         .then(response => {
          if (response.ok) {
+           this.props.router.push('/todos');
            return response;
          } else {
            let errorMessage = `${response.status} (${response.statusText})`,
@@ -43,16 +41,7 @@ class SearchResults extends React.Component {
            throw(error);
          }
        })
-        // .then(response => response.json())
-        // .then(body => {
-        //   this.setState({
-        //     climbs: body,
-        //     showNewForm: false
-        //   });
-        // })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
-      // browserHistory.push('/todos');
-      this.props.router.push('/todos');
     };
   }
 
