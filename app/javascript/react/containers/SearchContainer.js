@@ -157,6 +157,7 @@ class SearchContainer extends React.Component {
         <div className="large-9 column">
           <SearchResults
             results={this.state.searchResults}
+            router={this.props.router}
           />
         </div>
       </div>

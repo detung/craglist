@@ -51,12 +51,12 @@ class SearchResults extends React.Component {
         //   });
         // })
         .catch(error => console.error(`Error in fetch: ${error.message}`));
-      browserHistory.push('/todos');
+      // browserHistory.push('/todos');
+      this.props.router.push('/todos');
     };
   }
 
   render() {
-    console.log(this.props.results)
     let results = this.props.results.map(route => {
 
       let handleClick = () => {
