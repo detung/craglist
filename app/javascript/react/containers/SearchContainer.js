@@ -108,9 +108,8 @@ class SearchContainer extends React.Component {
   }
 
   render() {
-    console.log(this.state.searchResults)
     return(
-      <div className="row panel">
+      <div className="row panel search-form">
         <h3>Search for Popular Climbs by Location</h3>
         <div className="large-3 column">
           <form className="" onSubmit={this.submitSearch}>
@@ -152,7 +151,7 @@ class SearchContainer extends React.Component {
                 />
               </div>
             </div>
-            <input className="button" type="submit" />
+            <input className="button" type="submit" value="Search" />
           </form>
         </div>
         <div className="large-9 column">

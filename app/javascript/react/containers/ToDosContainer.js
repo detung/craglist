@@ -269,6 +269,7 @@ class ToDosContainer extends React.Component {
           </div>
           <div className="large-6 column new-button">
             <button onClick={this.toggleNewForm}><FontAwesomeIcon icon={faPlus} /> Add a To Do</button>
+            <Link className="button" to="/suggest">Suggest a Route</Link>
           </div>
           <table className="climb-table">
             <thead>

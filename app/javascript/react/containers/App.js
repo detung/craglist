@@ -14,7 +14,7 @@ const App = props => {
       <Route path='/' component={HomepageContainer} />
       <Route path='/todos' component={ToDosContainer} />
       <Route path='/ticks' component={TicksContainer} />
-      <Route path='/search' component={SearchContainer} />
+      <Route path='/suggest' component={SearchContainer} />
     </Router>
   )
 }

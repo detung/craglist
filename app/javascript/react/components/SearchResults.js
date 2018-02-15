@@ -78,9 +78,9 @@ class SearchResults extends React.Component {
     })
 
     return(
-      <div>
+      <ul className="search-result-list no-bullet">
         {results}
-      </div>
+      </ul>
     )
   }
 }
