@@ -38,7 +38,6 @@ class TicksContainer extends React.Component {
           grade={route.climb.grade}
           discipline={route.climb.discipline}
           pitches={route.climb.pitches}
-          description={route.climb.description}
           comment={route.comment.body}
         />
       );

@@ -50,7 +50,6 @@ class AddClimbForm extends React.Component {
       typeOptions: ['Boulder', 'Sport', 'Top Rope', 'Trad'],
       typeSelected: '',
       pitches: '',
-      description: '',
       comment: ''
     }
 
@@ -59,7 +58,6 @@ class AddClimbForm extends React.Component {
     this.handleGradeSelection = this.handleGradeSelection.bind(this);
     this.handleTypeSelection = this.handleTypeSelection.bind(this);
     this.handlePitchesChange = this.handlePitchesChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
@@ -84,10 +82,6 @@ class AddClimbForm extends React.Component {
     this.setState({ pitches: event.target.value })
   }
 
-  handleDescriptionChange(event) {
-    this.setState({ description: event.target.value })
-  }
-
   handleCommentChange(event) {
     this.setState({ comment: event.target.value })
   }
@@ -100,8 +94,7 @@ class AddClimbForm extends React.Component {
         location: this.state.location,
         grade: this.state.gradeSelected,
         discipline: this.state.typeSelected,
-        pitches: this.state.pitches,
-        description: this.state.description
+        pitches: this.state.pitches
       },
       comment: {
         body: this.state.comment
@@ -153,12 +146,6 @@ class AddClimbForm extends React.Component {
               />
             </div>
           </div>
-          <TextArea
-            label="Description"
-            name="description"
-            value={this.state.description}
-            handlerFunction={this.handleDescriptionChange}
-          />
           <TextArea
             label="Comment"
             name="comment"

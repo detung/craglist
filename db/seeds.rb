@@ -15,32 +15,28 @@ if Rails.env.development?
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
-    pitches: 1,
-    description: "A fun slightly steep climb"
+    pitches: 1
   )
   climb2 = Climb.find_or_create_by!(
     name: "Orangahang",
     location: "Rumney, NH",
     grade: "5.12a",
     discipline: "Sport",
-    pitches: 1,
-    description: "Steep powerful climbing on jugs"
+    pitches: 1
   )
   climb3 = Climb.find_or_create_by!(
     name: "Peer Pressure",
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
-    pitches: 1,
-    description: "Big rest in the middle"
+    pitches: 1
   )
   climb4 = Climb.find_or_create_by!(
     name: "Underdog",
     location: "Rumney, NH",
     grade: "5.10a",
     discipline: "Sport",
-    pitches: 1,
-    description: "Fun. Unique hold"
+    pitches: 1
   )
 
   user.climbs = Climb.all
@@ -49,7 +45,7 @@ if Rails.env.development?
   Comment.find_or_create_by!(body: "Maybe my first 5.12a?", user: user, climb: climb2)
   Comment.find_or_create_by!(body: "Proud of this lead", user: user, climb: climb3)
   Comment.find_or_create_by!(body: "First 5.10a onsight", user: user, climb: climb4)
-  
+
   tick1 = ToDo.find_by(user: user, climb: Climb.third)
   tick1.completed!
   tick2 = ToDo.find_by(user: user, climb: Climb.last)
