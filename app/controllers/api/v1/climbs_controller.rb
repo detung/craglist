@@ -44,6 +44,28 @@ class Api::V1::ClimbsController < ApiController
     end
   end
 
+  def home_todos
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      user = current_user
+      to_do_list = user.climbs_to_do.take(5)
+
+      render json: to_do_list
+    end
+  end
+
+  def home_ticks
+    if current_user.nil?
+      redirect_to new_user_session_path
+    else
+      user = current_user
+      tick_list = user.climbs_completed.reverse.take(5)
+
+      render json: tick_list
+    end
+  end
+
   def search
     location = location_params
     coordinates = Geokit::Geocoders::GoogleGeocoder.geocode location

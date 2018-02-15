@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :climbs, only: [:create] do
+        get 'home_todos', on: :collection
+        get 'home_ticks', on: :collection
         get 'todos', on: :collection
         get 'ticks', on: :collection
         get 'search', on: :collection

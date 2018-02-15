@@ -36,9 +36,11 @@
 .home-list li {
   padding-top: 10px;
   padding-left: 10%;
-  border-top: 2px solid #72727A;
-  border-bottom: 2px solid #72727A;
-  margin-bottom: -2px;
+  border-bottom: 1px solid #72727A;
+}
+
+.home-list li:nth-child(1) {
+  border-top: 1px solid #72727A;
 }
 
 .home-list span {
