@@ -1,0 +1,46 @@
+.search-form {
+  border: 1px solid rgba(86, 86, 86, 0.2);
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 2px;
+  width: 750px;
+  min-width: 300px;
+  height: auto;
+  min-height: 300px;
+  padding: 2%;
+  padding-bottom: 20px;
+  margin: auto;
+  margin-top: 25px;
+  box-shadow: 0px 1px 2px gray;
+  overflow: auto;
+  text-align: left;
+}
+
+.search-result-list li {
+  text-align: center;
+  padding: 5px;
+  border-bottom: 1px solid #72727A;
+}
+
+.search-result-list li:nth-child(1) {
+  border-top: 1px solid #72727A;
+}
+
+.search-result-list li:hover {
+  box-shadow: 0px 1px 2px gray;
+}
+
+.search-name {
+  font-weight: bolder;
+}
+
+.search-location {
+  font-size: 0.85em;
+}
+
+.search-pitches {
+  padding: 0px;
+}
+
+.search-result-list li .row {
+  margin: 0px -10px;
+}

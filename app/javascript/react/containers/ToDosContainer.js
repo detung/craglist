@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import ClimbTile from '../components/ClimbTile';
-import ClimbFormContainer from './ClimbFormContainer';
+import AddClimbForm from './AddClimbForm';
 import EditCommentForm from './EditCommentForm';
 import CompletedClimbForm from './CompletedClimbForm';
 
@@ -216,7 +216,6 @@ class ToDosContainer extends React.Component {
           grade={route.climb.grade}
           discipline={route.climb.discipline}
           pitches={route.climb.pitches}
-          description={route.climb.description}
           comment={route.comment.body}
           clickEdit={clickEdit}
           clickDelete={clickDelete}
@@ -228,7 +227,7 @@ class ToDosContainer extends React.Component {
     let newForm;
       if (this.state.showNewForm === true) {
         newForm =
-        <ClimbFormContainer
+        <AddClimbForm
           toggleNewForm={this.toggleNewForm}
           addNewClimb={this.addNewClimb}
         />
@@ -265,10 +264,11 @@ class ToDosContainer extends React.Component {
       <div>
         <div className="row list-container">
           <div className="large-6 column">
-            <h2>To Do List</h2>
+            <h2>Climbs To Do</h2>
           </div>
           <div className="large-6 column new-button">
             <button onClick={this.toggleNewForm}><FontAwesomeIcon icon={faPlus} /> Add a To Do</button>
+            <Link className="button" to="/suggest">Suggest a Route</Link>
           </div>
           <table className="climb-table">
             <thead>

@@ -15,32 +15,28 @@ if Rails.env.development?
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
-    pitches: 1,
-    description: "A fun slightly steep climb"
+    pitches: 1
   )
   orangahang = Climb.find_or_create_by!(
     name: "Orangahang",
     location: "Rumney, NH",
     grade: "5.12a",
     discipline: "Sport",
-    pitches: 1,
-    description: "Steep powerful climbing on jugs"
+    pitches: 1
   )
   peer_pressure = Climb.find_or_create_by!(
     name: "Peer Pressure",
     location: "Rumney, NH",
     grade: "5.10d",
     discipline: "Sport",
-    pitches: 1,
-    description: "Big rest in the middle"
+    pitches: 1
   )
   underdog = Climb.find_or_create_by!(
     name: "Underdog",
     location: "Rumney, NH",
     grade: "5.10a",
     discipline: "Sport",
-    pitches: 1,
-    description: "Fun. Unique hold"
+    pitches: 1
   )
   metamorphosis = Climb.find_or_create_by!(
     name: "Metamorphosis",

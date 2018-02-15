@@ -38,7 +38,6 @@ class TicksContainer extends React.Component {
           grade={route.climb.grade}
           discipline={route.climb.discipline}
           pitches={route.climb.pitches}
-          description={route.climb.description}
           comment={route.comment.body}
         />
       );
@@ -48,7 +47,7 @@ class TicksContainer extends React.Component {
       <div>
         <div className="row list-container">
           <div className="large-6 column header">
-            <h2>Tick List</h2>
+            <h2>Climbs Ticked</h2>
           </div>
           <table className="climb-table">
             <thead>

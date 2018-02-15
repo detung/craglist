@@ -1,12 +1,11 @@
 import React from 'react';
-import { browserHistory } from 'react-router';
 
 import TextField from '../components/TextField';
 import Select from '../components/Select';
 import TextArea from '../components/TextArea';
 import NumberField from '../components/NumberField';
 
-class ClimbFormContainer extends React.Component {
+class AddClimbForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -51,7 +50,6 @@ class ClimbFormContainer extends React.Component {
       typeOptions: ['Boulder', 'Sport', 'Top Rope', 'Trad'],
       typeSelected: '',
       pitches: '',
-      description: '',
       comment: ''
     }
 
@@ -60,7 +58,6 @@ class ClimbFormContainer extends React.Component {
     this.handleGradeSelection = this.handleGradeSelection.bind(this);
     this.handleTypeSelection = this.handleTypeSelection.bind(this);
     this.handlePitchesChange = this.handlePitchesChange.bind(this);
-    this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
@@ -85,10 +82,6 @@ class ClimbFormContainer extends React.Component {
     this.setState({ pitches: event.target.value })
   }
 
-  handleDescriptionChange(event) {
-    this.setState({ description: event.target.value })
-  }
-
   handleCommentChange(event) {
     this.setState({ comment: event.target.value })
   }
@@ -101,8 +94,7 @@ class ClimbFormContainer extends React.Component {
         location: this.state.location,
         grade: this.state.gradeSelected,
         discipline: this.state.typeSelected,
-        pitches: this.state.pitches,
-        description: this.state.description
+        pitches: this.state.pitches
       },
       comment: {
         body: this.state.comment
@@ -115,7 +107,7 @@ class ClimbFormContainer extends React.Component {
     return(
       <div>
         <form className="new-form" onSubmit={this.handleFormSubmit}>
-          <h3>Add New Climb</h3>
+          <h3>Add a Climb</h3>
           <TextField
             label="Route Name"
             name="name"
@@ -155,12 +147,6 @@ class ClimbFormContainer extends React.Component {
             </div>
           </div>
           <TextArea
-            label="Description"
-            name="description"
-            value={this.state.description}
-            handlerFunction={this.handleDescriptionChange}
-          />
-          <TextArea
             label="Comment"
             name="comment"
             value={this.state.comment}
@@ -177,4 +163,4 @@ class ClimbFormContainer extends React.Component {
   }
 }
 
-export default ClimbFormContainer;
+export default AddClimbForm;

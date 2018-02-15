@@ -56,6 +56,10 @@ thead th:nth-child(9) {
   padding: 8px;
 }
 
+tbody td:nth-child(1) {
+  text-align: center;
+}
+
 tbody td:nth-child(6) {
   text-align: center;
 }
@@ -75,6 +79,8 @@ tbody td:nth-child(8) {
 .fa-check {
   color: #828282;
   font-size: 1.2em;
+  height: 25px;
+  width: 25px;
 }
 
 .fa-trash-alt:hover {
@@ -88,4 +94,8 @@ tbody td:nth-child(8) {
 .fa-check:hover {
   color: #05A305;
   box-shadow: 0px 1px 2px gray;
+  border-radius: 15px;
+  height: 25px;
+  width: 25px;
+  padding: 2px;
 }

@@ -19,7 +19,6 @@ FactoryBot.define do
     grade "5.12+"
     discipline "Trad"
     pitches 10
-    description "This is a cool rock climb"
   end
 
   factory :comment do

@@ -17,7 +17,7 @@ class Api::V1::ClimbsController < ApiController
       end
 
       new_comment.save!
-        
+
       render json: user.climbs_to_do
     end
   end
@@ -44,13 +44,37 @@ class Api::V1::ClimbsController < ApiController
     end
   end
 
+  def search
+    location = location_params
+    coordinates = Geokit::Geocoders::GoogleGeocoder.geocode location
+    latitude = coordinates.latitude
+    longitude = coordinates.longitude
+
+    distance = params[:radius]
+    type = params[:type]
+    minDiff = params[:minGrade]
+    maxDiff = params[:maxGrade]
+
+    response = HTTParty.get("https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=#{latitude}&lon=#{longitude}&maxResults=100&maxDistance=#{distance}&minDiff=#{minDiff}&maxDiff=#{maxDiff}&key=#{ENV['MP_API_KEY']}")
+    routes = response["routes"]
+    routes.select! { |route| route["type"] == type }
+    sorted_routes = routes.sort_by { |route| route["stars"] }.reverse
+    top_ten_routes = sorted_routes.take(10)
+
+    render json: top_ten_routes
+  end
+
   private
 
   def climb_params
-    params.require(:climb).permit(:name, :location, :grade, :discipline, :pitches, :description)
+    params.require(:climb).permit(:name, :location, :grade, :discipline, :pitches)
   end
 
   def comment_params
     params.require(:comment).permit(:body)
+  end
+
+  def location_params
+    params.require(:q)
   end
 end
