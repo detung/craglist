@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 import ClimbTile from '../components/ClimbTile';
-import ClimbFormContainer from './ClimbFormContainer';
+import AddClimbForm from './AddClimbForm';
 import EditCommentForm from './EditCommentForm';
 import CompletedClimbForm from './CompletedClimbForm';
 
@@ -227,7 +227,7 @@ class ToDosContainer extends React.Component {
     let newForm;
       if (this.state.showNewForm === true) {
         newForm =
-        <ClimbFormContainer
+        <AddClimbForm
           toggleNewForm={this.toggleNewForm}
           addNewClimb={this.addNewClimb}
         />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Router, browserHistory } from 'react-router';
 import HomepageContainer from './HomepageContainer';
-import ClimbFormContainer from './ClimbFormContainer';
 import ToDosContainer from './ToDosContainer';
 import TicksContainer from './TicksContainer';
 
