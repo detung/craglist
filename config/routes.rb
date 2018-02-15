@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :climbs, only: [:create] do
         get 'todos', on: :collection
         get 'ticks', on: :collection
+        get 'search', on: :collection
       end
 
       resources :comments, only: [:update] do

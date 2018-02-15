@@ -176,5 +176,4 @@ class AddClimbForm extends React.Component {
   }
 }
 
-
 export default AddClimbForm;
