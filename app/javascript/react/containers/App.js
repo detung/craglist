@@ -13,7 +13,7 @@ const App = props => {
       <Route path='/' component={HomepageContainer} />
       <Route path='/todos' component={ToDosContainer} />
       <Route path='/ticks' component={TicksContainer} />
-      <Route path='/suggest' component={SearchContainer} />
+      <Route path='/search' component={SearchContainer} />
     </Router>
   )
 }

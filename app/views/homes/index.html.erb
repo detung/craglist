@@ -2,5 +2,18 @@
   <div id="app"></div>
   <%= javascript_pack_tag 'application' %>
 <% else %>
-  <h1>Welcome to Craglist</h1>
+  <div class="welcome panel">
+    <h1 id="welcome-title">Welcome to Craglist</h1>
+    <h4>Keep track of your climbing progress and find popular climbs to do</h4>
+    <div id="get-started">
+      <button>
+        <%= link_to "Log in", new_user_session_path %>
+      </button>
+      <span>or</span>
+      <button>
+        <%= link_to "Sign up", new_user_registration_path %>
+      </button>
+      <span>to get started</span>
+    </div>
+  </div>
 <% end %>

@@ -1403,7 +1403,7 @@ $table-even-row-bg: rgba(151, 150, 157, 0.4);
 // $include-html-top-bar-classes: $include-html-classes;
 
 // Background color for the top bar
-$topbar-bg-color: #272829;
+$topbar-bg-color: #333333;
 // $topbar-bg-color: #4F4F50;
 // $topbar-bg: $topbar-bg-color;
 
@@ -1412,11 +1412,11 @@ $topbar-height: rem-calc(55);
 // $topbar-margin-bottom: 0;
 
 // Controlling the styles for the title in the top bar
-$topbar-title-weight: $font-weight-bold;
-$topbar-title-font-size: rem-calc(20);
+// $topbar-title-weight: $font-weight-normal;
+$topbar-title-font-size: rem-calc(25);
 
 // Set the link colors and styles for top-level nav
-// $topbar-link-color: $white;
+$topbar-link-color: #F4F4F4;
 // $topbar-link-color-hover: $white;
 // $topbar-link-color-active: $white;
 // $topbar-link-color-active-hover: $white;

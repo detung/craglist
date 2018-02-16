@@ -9,6 +9,7 @@
 
 .climb-table thead {
   background-color: rgba(255, 255, 255, 0.0);
+  border-bottom: 1px solid #BBBCC0;
 }
 
 .climb-table thead th {
@@ -54,6 +55,7 @@ thead th:nth-child(9) {
 .climb-table td {
   font-size: 1em;
   padding: 8px;
+  height: 45px;
 }
 
 tbody td:nth-child(1) {
