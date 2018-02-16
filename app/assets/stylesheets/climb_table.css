@@ -53,13 +53,25 @@ thead th:nth-child(9) {
 }
 
 .climb-table td {
-  font-size: 1em;
+  font-size: 0.9em;
   padding: 8px;
-  height: 45px;
+  height: 44px;
 }
 
 tbody td:nth-child(1) {
   text-align: center;
+}
+
+tbody td:nth-child(2) {
+  font-size: 1em;
+}
+
+tbody td:nth-child(4) {
+  padding-left: 15px;
+}
+
+tbody td:nth-child(5) {
+  padding-left: 13px;
 }
 
 tbody td:nth-child(6) {
