@@ -1,24 +1,23 @@
 class Api::V1::ClimbsController < ApiController
-
   def create
     if current_user.nil?
       redirect_to new_user_session_path
     else
       user = current_user
-      new_climb = Climb.new(climb_params)
-      new_comment = Comment.new(comment_params)
-      new_comment.user = current_user
-      new_comment.climb = new_climb
-
-      if new_climb.save!
-        user.climbs << new_climb
+      climb = Climb.new(climb_params)
+      if climb.save!
+        user.climbs << climb
+        comment = Comment.new(comment_params)
+        comment.user = current_user
+        comment.climb = climb
+        if comment.save!
+          render json: user.climbs_to_do
+        else
+          render json: { error: comment.errors.full_messages }, status: :unprocessable_entity
+        end
       else
         render json: { error: climb.errors.full_messages }, status: :unprocessable_entity
       end
-
-      new_comment.save!
-
-      render json: user.climbs_to_do
     end
   end
 
