@@ -1,0 +1,33 @@
+#welcome-title {
+  font-family: 'Lalezar', cursive;
+  margin: 20px;
+}
+
+.welcome {
+  width: 66%;
+  height: 40%;
+  background-color: rgba(255, 255, 255, 0.75);
+}
+
+.welcome h4 {
+  margin: 30px 20px;
+}
+
+#get-started {
+  margin-top: 50px;
+  text-align: center;
+}
+
+#get-started span {
+  margin: 10px;
+  font-size: 1.2em;
+}
+
+button a {
+  color: #FFFFFF;
+  font-size: 1.1em;
+}
+
+button a:hover {
+  color: #FFFFFF;
+}
