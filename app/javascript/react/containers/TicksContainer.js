@@ -39,6 +39,7 @@ class TicksContainer extends React.Component {
           discipline={route.climb.discipline}
           pitches={route.climb.pitches}
           comment={route.comment.body}
+          date={route.climb.updated_at}
         />
       );
     });
@@ -49,10 +50,10 @@ class TicksContainer extends React.Component {
           <div className="large-6 column header">
             <h2>Climbs Ticked</h2>
           </div>
-          <table className="climb-table">
+          <table className="climb-table tick-table">
             <thead>
               <tr>
-                <th></th>
+                <th>Date Ticked</th>
                 <th>Route Name</th>
                 <th>Location</th>
                 <th>Grade</th>
