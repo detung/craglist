@@ -7,10 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 user = User.find_by(email: "detung@gmail.com")
 
-if Rails.env.development?
-  user.password = "password"
-end
-
 clusterphobia = Climb.find_or_create_by!(
   name: "Clusterphobia",
   location: "Rumney, NH",
