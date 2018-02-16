@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-test_user = User.find_or_create_by!(email: "dennis@gmail.com") do |user|
+user = User.find_by(email: "detung@gmail.com")
+
+if Rails.env.development?
   user.password = "password"
 end
-
-user = User.find_by(email: "detung@gmail.com")
 
 clusterphobia = Climb.find_or_create_by!(
   name: "Clusterphobia",
@@ -103,25 +103,12 @@ Comment.find_or_create_by!(body: "Summer goal. First multipitch trad!", user: us
 Comment.find_or_create_by!(body: "Would be so epic to climb Half Dome", user: user, climb: snake_dike)
 Comment.find_or_create_by!(body: "Future trad goal", user: user, climb: whitney_gilman)
 
-def populate_tick_list(climber)
-  climbs_ticked = []
-  climbs_ticked << ToDo.find_by(user: climber, climb: peer_pressure)
-  climbs_ticked << ToDo.find_by(user: climber, climb: underdog)
-  climbs_ticked << ToDo.find_by(user: climber, climb: metamorphosis)
-  climbs_ticked << ToDo.find_by(user: climber, climb: masterpiece)
-  climbs_ticked << ToDo.find_by(user: climber, climb: glory_jeans)
-  climbs_ticked.each do |climb|
-    climb.completed!
-  end
+climbs_ticked = []
+climbs_ticked << ToDo.find_by(user: user, climb: peer_pressure)
+climbs_ticked << ToDo.find_by(user: user, climb: underdog)
+climbs_ticked << ToDo.find_by(user: user, climb: metamorphosis)
+climbs_ticked << ToDo.find_by(user: user, climb: masterpiece)
+climbs_ticked << ToDo.find_by(user: user, climb: glory_jeans)
+climbs_ticked.each do |climb|
+  climb.completed!
 end
-
-test_user.climbs = Climb.all
-Comment.find_or_create_by!(body: "Want to lead this one", user: test_user, climb: clusterphobia)
-Comment.find_or_create_by!(body: "Maybe my first 5.12a?", user: test_user, climb: orangahang)
-Comment.find_or_create_by!(body: "Proud of this send", user: test_user, climb: peer_pressure)
-Comment.find_or_create_by!(body: "First 5.10a onsight", user: test_user, climb: underdog)
-Comment.find_or_create_by!(body: "Really fun climb on juggy holds", user: test_user, climb: metamorphosis)
-Comment.find_or_create_by!(body: "Steep beginning and interesting stem finish", user: test_user, climb: masterpiece)
-
-populate_tick_list(user)
-populate_tick_list(test_user)

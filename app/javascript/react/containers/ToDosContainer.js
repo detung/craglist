@@ -99,8 +99,8 @@ class ToDosContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
-  deleteToDo(climbId) {
-    let confirmDelete = confirm('Are you sure?');
+  deleteToDo(climbId, climbName) {
+    let confirmDelete = confirm(`Remove ${climbName}?`);
 
     if (confirmDelete) {
       fetch(`/api/v1/to_dos/${climbId}`, {
@@ -201,7 +201,7 @@ class ToDosContainer extends React.Component {
       }
 
       let clickDelete = () => {
-        this.deleteToDo(route.climb.id)
+        this.deleteToDo(route.climb.id, route.climb.name)
       }
 
       let clickCheck = () => {
