@@ -4,7 +4,7 @@
   border-radius: 2px;
   width: 450px;
   min-width: 300px;
-  height: 600px;
+  height: 525px;
   min-height: 300px;
   padding: 2%;
   padding-bottom: 20px;
@@ -20,16 +20,11 @@
   text-align: left;
 }
 
-.edit-form {
-  height: 250px;
+.edit-form, .completed-form {
+  height: 300px;
   min-height: 100px;
 }
-
-.completed-form {
-  height: 400px;
-  min-height: 100px;
-}
-
+  
 .form-sheet {
   background-color: #000;
   position: fixed;

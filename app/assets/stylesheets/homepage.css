@@ -1,7 +1,7 @@
 .home-container {
   border: 1px solid rgba(10, 10, 10, 0.2);
   border-radius: 5px;
-  height: 500px;
+  height: 470px;
   width: 450px;
   margin: 25px;
   background-color: rgba(255, 255, 255, 0.8);
@@ -36,9 +36,11 @@
 .home-list li {
   padding-top: 10px;
   padding-left: 10%;
-  border-top: 2px solid #72727A;
-  border-bottom: 2px solid #72727A;
-  margin-bottom: -2px;
+  border-bottom: 1px solid #72727A;
+}
+
+.home-list li:nth-child(1) {
+  border-top: 1px solid #72727A;
 }
 
 .home-list span {
