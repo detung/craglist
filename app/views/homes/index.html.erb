@@ -6,14 +6,13 @@
     <h1 id="welcome-title">Welcome to Craglist</h1>
     <h4>Keep track of your climbing progress and find popular climbs to do</h4>
     <div id="get-started">
-      <button>
-        <%= link_to "Log in", new_user_session_path %>
-      </button>
+      <a href="/users/sign_in" class="button">Log in</a>
       <span>or</span>
-      <button>
-        <%= link_to "Sign up", new_user_registration_path %>
-      </button>
+      <a href="/users/sign_up" class="button">Sign up</a>
       <span>to get started</span>
+      <div>
+        <a class="fb-login" href="<%= user_facebook_omniauth_authorize_path %>"><i class="fab fa-facebook"></i>Continue with Facebook</a>
+      </div>
     </div>
   </div>
 <% end %>
