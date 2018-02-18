@@ -24,7 +24,7 @@
   height: 300px;
   min-height: 100px;
 }
-  
+
 .form-sheet {
   background-color: #000;
   position: fixed;
@@ -46,7 +46,15 @@
   display: table-cell;
 }
 
-#pitches {
+#select-type {
+  width: 40%;
+}
+
+#select-grade {
+  width: 35%;
+}
+
+#select-pitches {
   width: 25%;
 }
 
