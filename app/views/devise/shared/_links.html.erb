@@ -18,8 +18,10 @@
   <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
 <% end -%>
 
-<%- if devise_mapping.omniauthable? %>
+<div class="oauth">
+  <%- if devise_mapping.omniauthable? %>
     <%- resource_class.omniauth_providers.each do |provider| %>
-      <%= link_to "Continue with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
-    <% end -%>
+      <a class="fb-login" href="<%= omniauth_authorize_path(resource_name, provider) %>"><%= "Continue with #{OmniAuth::Utils.camelize(provider)}" %></a><br />
+  <% end -%>
+</div>
 <% end -%>
