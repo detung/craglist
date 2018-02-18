@@ -46,25 +46,30 @@ class SearchResults extends React.Component {
   }
 
   render() {
-    let results = this.props.results.map(route => {
+    let results;
+    if (this.props.results === 'error') {
+      results = 'Could not find any climbs. Try changing your search details.'
+    } else {
+      results = this.props.results.map(route => {
 
-      let handleClick = () => {
-        this.submitSelectedClimb(route)
-      }
+        let handleClick = () => {
+          this.submitSelectedClimb(route)
+        }
 
-      return(
-        <SearchResultTile
-          key={route.id}
-          name={route.name}
-          location={route.location}
-          grade={route.rating}
-          type={route.type}
-          stars={route.stars}
-          pitches={route.pitches}
-          handleClick={handleClick}
-        />
-      )
-    })
+        return(
+          <SearchResultTile
+            key={route.id}
+            name={route.name}
+            location={route.location}
+            grade={route.rating}
+            type={route.type}
+            stars={route.stars}
+            pitches={route.pitches}
+            handleClick={handleClick}
+          />
+        )
+      })
+    }
 
     return(
       <ul className="search-result-list no-bullet">
