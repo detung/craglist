@@ -11,7 +11,7 @@ class SearchContainer extends React.Component {
     this.state = {
       searchString: '',
       searchResults: [],
-      gradeOptions: [
+      routeGradeOptions: [
         '5.0',
         '5.1',
         '5.2',
@@ -46,9 +46,28 @@ class SearchContainer extends React.Component {
         '5.15b',
         '5.15c'
       ],
+      boulderGradeOptions: [
+        'V0',
+        'V1',
+        'V2',
+        'V3',
+        'V4',
+        'V5',
+        'V6',
+        'V7',
+        'V8',
+        'V9',
+        'V10',
+        'V11',
+        'V12',
+        'V13',
+        'V14',
+        'V15',
+        'V16'
+      ],
       minGradeSelected: '',
       maxGradeSelected: '',
-      typeOptions: ['Boulder', 'Sport', 'Trad'],
+      typeOptions: ['Boulder', 'Sport', 'Top Rope', 'Trad'],
       typeSelected: '',
       radiusOptions: [10, 25, 50, 100, 200],
       radiusSelected: ''
@@ -104,21 +123,33 @@ class SearchContainer extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ searchResults: body });
+        if (body.length === 0) {
+          this.setState({ searchResults: 'error'});
+        } else {
+          this.setState({ searchResults: body });
+        };
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
   render() {
+    let gradeOptions;
+    if (this.state.typeSelected === 'Boulder') {
+      gradeOptions = this.state.boulderGradeOptions
+    } else {
+      gradeOptions = this.state.routeGradeOptions
+    };
+
     return(
       <div className="row panel search-form">
         <h3>Search for Popular Climbs by Location</h3>
+        <p>Powered by the Mountain Project API</p>
         <div className="large-3 column">
           <form className="" onSubmit={this.submitSearch}>
             <SearchField
               label="Location"
               name="q"
-              placeholder="Ex. Boston, MA"
+              placeholder="e.g. Denver, CO"
               value={this.state.searchString}
               handlerFunction={this.handleSearchChange}
             />
@@ -139,7 +170,7 @@ class SearchContainer extends React.Component {
               <div className="select-cell">
                 <Select
                   label="Min"
-                  options={this.state.gradeOptions}
+                  options={gradeOptions}
                   selectedOption={this.state.minGradeSelected}
                   handlerFunction={this.handleMinGradeSelection}
                 />
@@ -147,7 +178,7 @@ class SearchContainer extends React.Component {
               <div className="select-cell">
                 <Select
                   label="Max"
-                  options={this.state.gradeOptions}
+                  options={gradeOptions}
                   selectedOption={this.state.maxGradeSelected}
                   handlerFunction={this.handleMaxGradeSelection}
                 />

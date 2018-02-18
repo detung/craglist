@@ -11,7 +11,7 @@ class AddClimbForm extends React.Component {
     this.state = {
       routeName: '',
       location: '',
-      gradeOptions: [
+      routeGradeOptions: [
         '5.0',
         '5.1',
         '5.2',
@@ -45,6 +45,25 @@ class AddClimbForm extends React.Component {
         '5.15a',
         '5.15b',
         '5.15c'
+      ],
+      boulderGradeOptions: [
+        'V0',
+        'V1',
+        'V2',
+        'V3',
+        'V4',
+        'V5',
+        'V6',
+        'V7',
+        'V8',
+        'V9',
+        'V10',
+        'V11',
+        'V12',
+        'V13',
+        'V14',
+        'V15',
+        'V16'
       ],
       gradeSelected: '',
       typeOptions: ['Boulder', 'Sport', 'Top Rope', 'Trad'],
@@ -104,6 +123,13 @@ class AddClimbForm extends React.Component {
   }
 
   render() {
+    let gradeOptions;
+    if (this.state.typeSelected === 'Boulder') {
+      gradeOptions = this.state.boulderGradeOptions
+    } else {
+      gradeOptions = this.state.routeGradeOptions
+    };
+
     return(
       <div>
         <form className="new-form" onSubmit={this.handleFormSubmit}>
@@ -121,15 +147,7 @@ class AddClimbForm extends React.Component {
             handlerFunction={this.handleLocationChange}
           />
           <div className="select-row">
-            <div className="select-cell">
-              <Select
-                label="Grade"
-                options={this.state.gradeOptions}
-                selectedOption={this.state.gradeSelected}
-                handlerFunction={this.handleGradeSelection}
-              />
-            </div>
-            <div className="select-cell">
+            <div className="select-cell" id="select-type">
               <Select
                 label="Type"
                 options={this.state.typeOptions}
@@ -137,7 +155,15 @@ class AddClimbForm extends React.Component {
                 handlerFunction={this.handleTypeSelection}
               />
             </div>
-            <div className="select-cell" id="pitches">
+            <div className="select-cell" id="select-grade">
+              <Select
+                label="Grade"
+                options={gradeOptions}
+                selectedOption={this.state.gradeSelected}
+                handlerFunction={this.handleGradeSelection}
+              />
+            </div>
+            <div className="select-cell" id="select-pitches">
               <NumberField
                 label="Pitches"
                 name="pitches"
