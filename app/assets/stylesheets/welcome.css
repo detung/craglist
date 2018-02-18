@@ -4,7 +4,7 @@
 
 .welcome {
   width: 950px;
-  height: 300px;
+  height: 360px;
   background-color: rgba(255, 255, 255, 0.75);
 }
 
@@ -22,6 +22,10 @@
   font-size: 1.2em;
 }
 
+#get-started div {
+  margin: 18px;
+}
+
 button a {
   color: #FFFFFF;
   font-size: 1.1em;
@@ -29,4 +33,25 @@ button a {
 
 button a:hover {
   color: #FFFFFF;
+}
+
+.fb-login {
+  border-radius: 5px;
+  background-color: #3b5998;
+  color: #FFFFFF;
+  padding: 12px;
+}
+
+.fb-login:hover {
+  color: #FFFFFF;
+  background-color: lig
+}
+
+.fa-facebook {
+  margin-right: 7px;
+  font-size: 1.3em;
+}
+
+.oauth {
+  margin-top: 15px;
 }
