@@ -3,18 +3,20 @@ import { Link } from 'react-router';
 
 const HomepageTickList = props => {
   return(
-    <div className="large-6 column home-container">
-      <div className="row">
-        <div className="large-6 column">
-          <h3>Climbs Ticked</h3>
+    <div className="row home-container">
+      <div className="small-5 column">
+        <div className="row">
+          <div className="small-6 column">
+            <h3>Climbs Ticked</h3>
+          </div>
+          <div className="small-6 column view-link">
+            <Link to='/ticks'>View All Ticks</Link>
+          </div>
         </div>
-        <div className="large-6 column view-link">
-          <Link to='/ticks'>View All Ticks</Link>
-        </div>
+        <ul className="home-list no-bullet">
+          {props.ticks}
+        </ul>
       </div>
-      <ul className="home-list no-bullet">
-        {props.ticks}
-      </ul>
     </div>
   )
 }

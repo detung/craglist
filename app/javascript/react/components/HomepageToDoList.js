@@ -3,18 +3,20 @@ import { Link } from 'react-router';
 
 const HomepageToDoList = props => {
   return(
-    <div className="large-6 column home-container">
-      <div className="row">
-        <div className="large-6 column">
-          <h3>Climbs To Do</h3>
+    <div className="row home-container">
+      <div className="small-5 column">
+        <div className="row">
+          <div className="small-6 column">
+            <h3>Climbs To Do</h3>
+          </div>
+          <div className="small-6 column view-link">
+            <Link to='/todos'>View All To-Dos</Link>
+          </div>
         </div>
-        <div className="large-6 column view-link">
-          <Link to='/todos'>View All To-Dos</Link>
-        </div>
+        <ul className="home-list no-bullet">
+          {props.toDos}
+        </ul>
       </div>
-      <ul className="home-list no-bullet">
-        {props.toDos}
-      </ul>
     </div>
   )
 }

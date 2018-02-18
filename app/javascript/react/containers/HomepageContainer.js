@@ -81,12 +81,16 @@ class HomepageContainer extends React.Component {
 
     return(
       <div className="row">
-        <HomepageTickList
-          ticks={ticks}
-        />
-        <HomepageToDoList
-          toDos={toDos}
-        />
+        <div className="small-10 small-offset-1 medium-6 medium-offset-3 large-6 column">
+          <HomepageTickList
+            ticks={ticks}
+          />
+        </div>
+        <div className="small-10 small-offset-1 medium-6 medium-offset-3 large-6 end column">
+          <HomepageToDoList
+            toDos={toDos}
+          />
+        </div>
       </div>
     )
   }
