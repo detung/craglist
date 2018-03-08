@@ -4,7 +4,12 @@ class Api::V1::CommentsController < ApiController
 
     if comment.update(comment_params)
       user = current_user
-      render json: user.climbs_to_do
+      todo = ToDo.find_by(user: user, climb: comment.climb)
+      if todo.pending?
+        render json: user.climbs_to_do
+      else
+        render json: user.climbs_completed
+      end
     else
       render json: { error: comment.errors.full_messages }, status: :unprocessable_entity
     end
