@@ -33,7 +33,7 @@ const TickClimbTile = props => {
         {props.comment}
       </td>
       <td>
-        <FontAwesomeIcon icon={faEdit} />
+        <FontAwesomeIcon icon={faEdit} onClick={props.clickEdit} />
       </td>
       <td>
         <FontAwesomeIcon icon={faTrashAlt} />

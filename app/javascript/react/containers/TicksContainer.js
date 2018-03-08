@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router';
 import TickClimbTile from '../components/TickClimbTile';
+import EditCommentForm from './EditCommentForm';
 
 class TicksContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      climbs: []
+      climbs: [],
+      selectedComment: '',
+      showEditForm: false
     };
+
+    this.editComment = this.editComment.bind(this)
+    this.renderEditCommentForm = this.renderEditCommentForm.bind(this)
   };
 
   componentDidMount() {
@@ -28,8 +34,54 @@ class TicksContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  editComment(formPayload) {
+    let id = formPayload.id
+    fetch(`/api/v1/comments/${id}`, {
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      method: 'PATCH',
+      body: JSON.stringify(formPayload)
+    })
+      .then(response => {
+       if (response.ok) {
+         return response;
+       } else {
+         let errorMessage = `${response.status} (${response.statusText})`,
+             error = new Error(errorMessage);
+         throw(error);
+       }
+     })
+      .then(response => response.json())
+      .then(body => {
+        this.setState({
+          climbs: body,
+          showEditForm: false
+        });
+      })
+      .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+
+    renderEditCommentForm(event, comment) {
+      event.preventDefault();
+      if (this.state.showEditForm === true) {
+        this.setState({
+          showEditForm: false,
+          selectedComment: ''
+        })
+      } else {
+        this.setState({
+          showEditForm: true,
+          selectedComment: comment
+        })
+      }
+    }
+
   render() {
     let climbs = this.state.climbs.map(route => {
+      let clickEdit = () => {
+        this.renderEditCommentForm(event, route.comment)
+      }
+
       return(
         <TickClimbTile
           key={route.climb.id}
@@ -40,9 +92,22 @@ class TicksContainer extends React.Component {
           pitches={route.climb.pitches}
           comment={route.comment.body}
           date={route.climb.updated_at}
+          clickEdit={clickEdit}
         />
       );
     });
+
+    let editForm;
+      if (this.state.showEditForm === true) {
+        editForm =
+        <EditCommentForm
+          editComment={this.editComment}
+          selectedComment={this.state.selectedComment}
+          toggleForm={this.renderEditCommentForm}
+        />
+      } else {
+        editForm = ''
+      };
 
     return(
       <div>
@@ -69,6 +134,7 @@ class TicksContainer extends React.Component {
             </tbody>
           </table>
         </div>
+        {editForm}
       </div>
     )
   }
