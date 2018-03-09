@@ -34,6 +34,33 @@ class TicksContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
 
+  deleteToDo(climbId, climbName) {
+    let confirmDelete = confirm(`Remove ${climbName}?`);
+
+    if (confirmDelete) {
+      fetch(`/api/v1/to_dos/${climbId}`, {
+        credentials: 'same-origin',
+        method: 'DELETE'
+      })
+        .then(response => {
+         if (response.ok) {
+           return response;
+         } else {
+           let errorMessage = `${response.status} (${response.statusText})`,
+               error = new Error(errorMessage);
+           throw(error);
+         }
+       })
+        .then(response => response.json())
+        .then(body => {
+          this.setState({
+            climbs: body,
+          });
+        })
+        .catch(error => console.error(`Error in fetch: ${error.message}`));
+    }
+  }
+
   editComment(formPayload) {
     let id = formPayload.id
     fetch(`/api/v1/comments/${id}`, {
@@ -82,6 +109,10 @@ class TicksContainer extends React.Component {
         this.renderEditCommentForm(event, route.comment)
       }
 
+      let clickDelete = () => {
+        this.deleteToDo(route.climb.id, route.climb.name)
+      }
+
       return(
         <TickClimbTile
           key={route.climb.id}
@@ -93,6 +124,7 @@ class TicksContainer extends React.Component {
           comment={route.comment.body}
           date={route.climb.updated_at}
           clickEdit={clickEdit}
+          clickDelete={clickDelete}
         />
       );
     });
