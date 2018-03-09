@@ -3,8 +3,12 @@ class Api::V1::ToDosController < ApiController
     user = current_user
     climb = Climb.find(params[:id])
     todo = ToDo.find_by(user: user, climb: climb)
-    todo.destroy
-
-    render json: user.climbs_to_do
+    if todo.pending?
+      todo.destroy
+      render json: user.climbs_to_do
+    else
+      todo.destroy
+      render json: user.climbs_completed
+    end
   end
 end
