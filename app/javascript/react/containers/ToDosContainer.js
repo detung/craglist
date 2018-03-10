@@ -196,7 +196,7 @@ class ToDosContainer extends React.Component {
   render() {
     let climbs = this.state.climbs.map(route => {
 
-      let clickEdit = () => {
+      let clickEdit = (event) => {
         this.renderEditCommentForm(event, route.comment)
       }
 
@@ -204,7 +204,7 @@ class ToDosContainer extends React.Component {
         this.deleteToDo(route.climb.id, route.climb.name)
       }
 
-      let clickCheck = () => {
+      let clickCheck = (event) => {
         this.renderCompletedForm(event, route.comment)
       }
 
