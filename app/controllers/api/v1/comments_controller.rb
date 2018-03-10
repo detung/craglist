@@ -23,8 +23,7 @@ class Api::V1::CommentsController < ApiController
     todo = ToDo.find_by(user: user, climb: climb)
     todo.completed!
 
-    update_time = todo.updated_at
-    climb.update_attributes(updated_at: update_time)
+    todo.update_attributes(completed_date: params[:tickDate])
 
     if comment.update(comment_params)
       render json: user.climbs_to_do
