@@ -24,7 +24,7 @@ class Api::V1::CommentsController < ApiController
     todo.completed!
 
     todo.update_attributes(completed_date: params[:tickDate])
-
+    
     if comment.update(comment_params)
       render json: user.climbs_to_do
     else

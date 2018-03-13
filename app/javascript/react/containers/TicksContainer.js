@@ -122,7 +122,7 @@ class TicksContainer extends React.Component {
           discipline={route.climb.discipline}
           pitches={route.climb.pitches}
           comment={route.comment.body}
-          date={route.climb.updated_at}
+          date={route.completed_date}
           clickEdit={clickEdit}
           clickDelete={clickDelete}
         />

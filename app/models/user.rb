@@ -20,7 +20,9 @@ class User < ApplicationRecord
   def climbs_completed
     completed = []
     ToDo.where(user: self, status: "completed").each do |item|
-      completed << get_climb_hash(item)
+      climb_hash = get_climb_hash(item)
+      climb_hash[:completed_date] = item.completed_date
+      completed << climb_hash
     end
     completed
   end
