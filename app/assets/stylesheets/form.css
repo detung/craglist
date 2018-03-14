@@ -25,6 +25,11 @@
   min-height: 100px;
 }
 
+.completed-form {
+  height: 380px;
+  min-height: 100px;
+}
+
 .form-sheet {
   background-color: #000;
   position: fixed;
