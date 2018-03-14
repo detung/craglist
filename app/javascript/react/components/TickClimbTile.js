@@ -5,9 +5,13 @@ import { faEdit } from '@fortawesome/fontawesome-free-solid';
 import { faTrashAlt } from '@fortawesome/fontawesome-free-solid';
 
 const TickClimbTile = props => {
-  let formattedDate = new Date(props.date);
-  let options = { year: "numeric", month: "short", day: "numeric" }
-  formattedDate = formattedDate.toLocaleDateString('en-US', options)
+  let date = new Date(props.date);
+  date = date.toUTCString();
+  date = date.split(' ');
+  let month = date[2];
+  let day = date[1];
+  let year = date[3];
+  let formattedDate = `${month} ${day}, ${year}`
 
   return(
     <tr>

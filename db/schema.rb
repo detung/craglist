@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180215214839) do
+ActiveRecord::Schema.define(version: 20180309234746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20180215214839) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "completed_date"
     t.index ["climb_id"], name: "index_to_dos_on_climb_id"
     t.index ["user_id"], name: "index_to_dos_on_user_id"
   end

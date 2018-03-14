@@ -5,11 +5,13 @@ class CompletedClimbForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      comment: this.props.selectedComment
+      comment: this.props.selectedComment,
+      tickDate: ''
     }
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
   }
 
   handleCommentChange(event) {
@@ -18,12 +20,17 @@ class CompletedClimbForm extends React.Component {
     this.setState({ comment: commentObject })
   }
 
+  handleDateChange(event) {
+    this.setState({ tickDate: event.target.value})
+  }
+
   handleFormSubmit(event) {
     event.preventDefault();
     let formPayload = {
       climbId: this.state.comment.climb_id,
       commentId: this.state.comment.id,
-      body: this.state.comment.body
+      body: this.state.comment.body,
+      tickDate: this.state.tickDate
     }
     this.props.completeToDo(formPayload);
   }
@@ -33,6 +40,8 @@ class CompletedClimbForm extends React.Component {
       <div>
         <form className="completed-form" onSubmit={this.handleFormSubmit}>
           <h3>Add New Tick</h3>
+          <label>Date Ticked</label>
+          <input type="date" value={this.state.tickDate} onChange={this.handleDateChange}></input>
           <TextArea
             label="Update Comment/Send Notes"
             name="comment"

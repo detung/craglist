@@ -33,3 +33,7 @@
 .tick-table thead th:nth-child(9) {
   width: 5%;
 }
+
+.tick-table tbody td:nth-child(1) {
+  text-align: left;
+}
