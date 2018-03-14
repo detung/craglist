@@ -88,20 +88,20 @@ class TicksContainer extends React.Component {
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
 
-    renderEditCommentForm(event, comment) {
-      event.preventDefault();
-      if (this.state.showEditForm === true) {
-        this.setState({
-          showEditForm: false,
-          selectedComment: ''
-        })
-      } else {
-        this.setState({
-          showEditForm: true,
-          selectedComment: comment
-        })
-      }
+  renderEditCommentForm(event, comment) {
+    event.preventDefault();
+    if (this.state.showEditForm === true) {
+      this.setState({
+        showEditForm: false,
+        selectedComment: ''
+      })
+    } else {
+      this.setState({
+        showEditForm: true,
+        selectedComment: comment
+      })
     }
+  }
 
   render() {
     let climbs = this.state.climbs.map(route => {
@@ -130,16 +130,16 @@ class TicksContainer extends React.Component {
     });
 
     let editForm;
-      if (this.state.showEditForm === true) {
-        editForm =
-        <EditCommentForm
-          editComment={this.editComment}
-          selectedComment={this.state.selectedComment}
-          toggleForm={this.renderEditCommentForm}
-        />
-      } else {
-        editForm = ''
-      };
+    if (this.state.showEditForm === true) {
+      editForm =
+      <EditCommentForm
+        editComment={this.editComment}
+        selectedComment={this.state.selectedComment}
+        toggleForm={this.renderEditCommentForm}
+      />
+    } else {
+      editForm = ''
+    };
 
     return(
       <div>

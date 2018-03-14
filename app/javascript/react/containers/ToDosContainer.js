@@ -184,18 +184,17 @@ class ToDosContainer extends React.Component {
   }
 
   toggleNewForm(event) {
-      event.preventDefault()
-      if (this.state.showNewForm === true) {
-        this.setState({ showNewForm: false })
-      }
-      else {
-        this.setState({ showNewForm: true })
-      }
+    event.preventDefault()
+    if (this.state.showNewForm === true) {
+      this.setState({ showNewForm: false })
     }
+    else {
+      this.setState({ showNewForm: true })
+    }
+  }
 
   render() {
     let climbs = this.state.climbs.map(route => {
-
       let clickEdit = (event) => {
         this.renderEditCommentForm(event, route.comment)
       }
@@ -225,40 +224,40 @@ class ToDosContainer extends React.Component {
     });
 
     let newForm;
-      if (this.state.showNewForm === true) {
-        newForm =
-        <AddClimbForm
-          toggleNewForm={this.toggleNewForm}
-          addNewClimb={this.addNewClimb}
-        />
-      } else {
-        newForm = ''
-      };
+    if (this.state.showNewForm === true) {
+      newForm =
+      <AddClimbForm
+        toggleNewForm={this.toggleNewForm}
+        addNewClimb={this.addNewClimb}
+      />
+    } else {
+      newForm = ''
+    };
 
     let editForm;
-      if (this.state.showEditForm === true) {
-        editForm =
-        <EditCommentForm
-          editComment={this.editComment}
-          selectedComment={this.state.selectedComment}
-          toggleForm={this.renderEditCommentForm}
-        />
-      } else {
-        editForm = ''
-      };
+    if (this.state.showEditForm === true) {
+      editForm =
+      <EditCommentForm
+        editComment={this.editComment}
+        selectedComment={this.state.selectedComment}
+        toggleForm={this.renderEditCommentForm}
+      />
+    } else {
+      editForm = ''
+    };
 
-      let completedForm;
-      if (this.state.showCompletedForm === true) {
-        completedForm =
-        <CompletedClimbForm
-          climbId={this.state.selectedclimbId}
-          completeToDo={this.completeToDo}
-          selectedComment={this.state.selectedComment}
-          toggleForm={this.renderCompletedForm}
-        />
-      } else {
-        completedForm = ''
-      };
+    let completedForm;
+    if (this.state.showCompletedForm === true) {
+      completedForm =
+      <CompletedClimbForm
+        climbId={this.state.selectedclimbId}
+        completeToDo={this.completeToDo}
+        selectedComment={this.state.selectedComment}
+        toggleForm={this.renderCompletedForm}
+      />
+    } else {
+      completedForm = ''
+    };
 
     return(
       <div>
