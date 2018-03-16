@@ -114,4 +114,30 @@ RSpec.describe Api::V1::ClimbsController, type: :controller do
       expect(returned_json[0]["comment"]["body"]).to eq "Maybe one day"
     end
   end
+
+  describe "GET#home_todos" do
+    it "should return a json of up to the first 5 climbs on the to do list" do
+      get :home_todos
+      returned_json = JSON.parse(response.body)
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq('application/json')
+
+      expect(returned_json.length).to eq 2
+      expect(returned_json[0]["climb"]["name"]).to eq "Moonlight Buttress"
+      expect(returned_json[1]["climb"]["name"]).to eq "Sheer Lunacy"
+    end
+  end
+
+  describe "GET#home_ticks" do
+    it "should return a json of up to the first 5 climbs on the tick list" do
+      get :home_ticks
+      returned_json = JSON.parse(response.body)
+      expect(response.status).to eq 200
+      expect(response.content_type).to eq('application/json')
+
+      expect(returned_json.length).to eq 2
+      expect(returned_json[0]["climb"]["name"]).to eq "Rostrum"
+      expect(returned_json[1]["climb"]["name"]).to eq "Astroman"
+    end
+  end
 end
