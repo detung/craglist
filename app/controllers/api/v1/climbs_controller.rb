@@ -79,7 +79,19 @@ class Api::V1::ClimbsController < ApiController
     response = HTTParty.get("https://www.mountainproject.com/data/get-routes-for-lat-lon?lat=#{latitude}&lon=#{longitude}&maxResults=100&maxDistance=#{distance}&minDiff=#{minDiff}&maxDiff=#{maxDiff}&key=#{ENV['MP_API_KEY']}")
     routes = response["routes"]
     routes.select! { |route| route["type"] == type }
-    sorted_routes = routes.sort_by { |route| route["stars"] }.reverse
+
+    avg_num_starVotes = routes.inject(0) { |sum, route| sum + route["starVotes"] } / routes.size
+    avg_stars = routes.inject(0.0) { |sum, route| sum + route["stars"] } / routes.size
+    
+    routes.each do |route|
+      this_num_starVotes = route["starVotes"]
+      this_stars = route["stars"]
+      bayesian_rating = ( (avg_num_starVotes * avg_stars) + (this_num_starVotes * this_stars) ) / (avg_num_starVotes + this_num_starVotes)
+
+      route["bayesian_rating"] = bayesian_rating
+    end
+
+    sorted_routes = routes.sort_by { |route| route["bayesian_rating"] }.reverse
     top_ten_routes = sorted_routes.take(10)
 
     render json: top_ten_routes

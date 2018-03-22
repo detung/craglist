@@ -64,6 +64,7 @@ class SearchResults extends React.Component {
             grade={route.rating}
             type={route.type}
             stars={route.stars}
+            votes={route.starVotes}
             pitches={route.pitches}
             handleClick={handleClick}
           />
