@@ -45,6 +45,11 @@
   padding: 0px;
 }
 
+.search-stars {
+  font-size: 0.9em;
+  font-style: italic;
+}
+
 .search-result-list li .row {
   margin: 0px -10px;
 }

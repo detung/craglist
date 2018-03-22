@@ -2,10 +2,10 @@ import React from 'react';
 
 const SearchResultTile = props => {
   let displayPitch;
-  if (props.pitches === 1) {
-    displayPitch = 'Pitch';
+  if (props.pitches === 1 || props.pitches === 0 || props.pitches === '') {
+    displayPitch = '1 Pitch';
   } else {
-    displayPitch = 'Pitches';
+    displayPitch = `${props.pitches} Pitches`;
   };
 
   return(
@@ -28,11 +28,16 @@ const SearchResultTile = props => {
               {props.type}
             </div>
             <div className="small-4 column search-pitches">
-              {props.pitches} {displayPitch}
+              {displayPitch}
             </div>
           </div>
           <div className="row search-stars">
-            {props.stars} Stars
+            <div className="small-6 column">
+              {props.stars} Stars
+            </div>
+            <div className="small-6 column">
+              {props.votes} Votes
+            </div>
           </div>
         </div>
       </div>
